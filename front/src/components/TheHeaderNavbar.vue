@@ -13,7 +13,7 @@
             <router-link :to="{ name: 'main' }" class="link">
               홈
             </router-link>
-            <router-link :to="{ name: 'board' }" class="m-2 link">
+            <router-link :to="{ name: 'notice' }" class="m-2 link">
               공지사항
             </router-link>
             <router-link :to="{ name: 'house' }" class="m-2 link">
