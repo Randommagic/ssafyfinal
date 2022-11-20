@@ -1,7 +1,12 @@
 <template>
   <div>
-    test
-  </div>
+    <li
+      class="list__item"
+      v-for="(news, index) in newsList"
+      :key="index"
+    >{{news}}
+    </li>
+</div>
 </template>
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
@@ -29,7 +34,7 @@ export default {
     },
   }
 };
-</script>
+</script>z
 <style scoped>
 .underline-hotpink {
   display: inline-block;

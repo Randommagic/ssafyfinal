@@ -7,10 +7,9 @@ const newsStore = {
     getters: {},
     mutations: {
         SET_NEWS_LIST(state, titles) {
-            console.log(titles);
-            titles.forEach((title) => {
-                console.log(title);
-                state.titles.push(title);
+            console.log(titles.items);
+            titles.items.forEach((title) => {
+                state.newsList.push(title);
             });
         }
     },

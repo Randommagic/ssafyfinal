@@ -14,6 +14,6 @@ module.exports = defineConfig({
         logLevel: "debug",
       },
     },
-    port:
+    port:8080,
   }
 })
