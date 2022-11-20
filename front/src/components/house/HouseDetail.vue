@@ -1,12 +1,14 @@
 <template>
   <b-container v-if="house" class="bv-example-row">
     <b-row>
-      <b-col
-        ><h3>{{ house.아파트 }}</h3></b-col
-      >
+      <b-col>
+        <h3>{{ house.아파트 }}</h3>
+      </b-col>
     </b-row>
     <b-row class="mb-2 mt-1">
-      <b-col><b-img :src="require('@/assets/apt.png')" fluid-grow></b-img></b-col>
+      <b-col>
+        <b-img :src="require('@/assets/apt.png')" fluid-grow></b-img>
+      </b-col>
     </b-row>
     <b-row>
       <b-col>
@@ -30,9 +32,14 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="danger"
-          >거래금액 : {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원</b-alert
-        >
+        <b-alert show variant="danger">거래금액 : {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원</b-alert>
+      </b-col>
+    </b-row>
+  </b-container>
+  <b-container v-else class="bv-example-row mt-3">
+    <b-row>
+      <b-col>
+        <b-alert show>선택된 주택이 없습니다.</b-alert>
       </b-col>
     </b-row>
   </b-container>
@@ -60,4 +67,6 @@ export default {
 };
 </script>
 
-<style></style>
+<style>
+
+</style>
