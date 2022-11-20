@@ -7,6 +7,7 @@ import houseStore from "@/store/modules/houseStore";
 import memberStore from "@/store/modules/memberStore";
 import todoStore from "@/store/modules/todoStore";
 import noticeStore from "@/store/modules/noticeStore";
+import newsStore from "@/store/modules/newsStore";
 
 Vue.use(Vuex);
 
@@ -17,6 +18,7 @@ export default new Vuex.Store({
     memberStore,
     todoStore,
     noticeStore,
+    newsStore,
   },
   plugins: [
     createPersistedState({

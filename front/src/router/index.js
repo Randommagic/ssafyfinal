@@ -41,6 +41,11 @@ const routes = [
     component: AppInstagram,
   },
   {
+    path: "/news",
+    name: "news",
+    component: () => import("@/views/AppNews"),
+  },
+  {
     path: "/house",
     name: "house",
     component: AppHouse,

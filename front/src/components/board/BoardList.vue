@@ -2,7 +2,9 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert show><h3>글목록</h3></b-alert>
+        <b-alert show>
+          <h3>글목록</h3>
+        </b-alert>
       </b-col>
     </b-row>
     <b-row class="mb-1">
@@ -12,7 +14,8 @@
     </b-row>
     <b-row>
       <b-col>
-        <b-table striped hover :items="articles" :fields="fields" @row-clicked="viewArticle">
+        <b-table hover :items="articles" :fields="fields" @row-clicked="viewArticle" :current-page="currentPage"
+          :per-page="perPage">
           <template #cell(subject)="data">
             <router-link :to="{ name: 'boardview', params: { articleno: data.item.articleno } }">
               {{ data.item.subject }}
@@ -21,6 +24,9 @@
         </b-table>
       </b-col>
     </b-row>
+
+    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage"></b-pagination>
+
   </b-container>
 </template>
 
@@ -39,7 +45,14 @@ export default {
         { key: "regtime", label: "작성일", tdClass: "tdClass" },
         { key: "hit", label: "조회수", tdClass: "tdClass" },
       ],
+      perPage: 10,
+      currentPage: 1,
     };
+  },
+  computed: {
+    rows() {
+      return this.articles.length;
+    }
   },
   created() {
     let param = {
@@ -77,8 +90,14 @@ export default {
   width: 50px;
   text-align: center;
 }
+
 .tdSubject {
   width: 300px;
   text-align: left;
 }
+
+.pagination {
+  display: inline-flex;
+}
+
 </style>

@@ -23,4 +23,18 @@ function houseInstance() {
   return instance;
 }
 
-export { apiInstance, houseInstance };
+// house deal API axios instance
+function newsInstance() {
+  const instance = axios.create({
+    // baseURL: "https://openapi.naver.com/v1/search/news?",
+    baseURL: "/v1/search/news?",
+    headers: {
+      "Content-Type": "application/json;charset=utf-8",
+      "X-Naver-Client-Id": process.env.VUE_APP_NAVER_CLIENT_ID,
+      "X-Naver-Client-Secret": process.env.VUE_APP_NAVER_CLIENT_SECRET,
+    },
+  });
+  return instance;
+}
+
+export { apiInstance, houseInstance, newsInstance };

@@ -89,6 +89,7 @@ const houseStore = {
         ({ data }) => {
           console.log(params);
           console.log(data);
+          console.log("test");
           commit("SET_HOUSE_LIST", data);
         },
         (error) => {
