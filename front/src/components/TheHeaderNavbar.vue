@@ -23,6 +23,9 @@
             <router-link :to="{ name: 'board' }" class="m-2 link">
               자유게시판
             </router-link>
+            <router-link :to="{ name: 'news' }" class="m-2 link">
+              뉴스
+            </router-link>
           </b-nav-item>
         </b-navbar-nav>
 

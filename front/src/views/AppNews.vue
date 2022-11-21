@@ -30,11 +30,11 @@ export default {
     ...mapActions(newsStore, ["getNews"]),
     ...mapMutations(newsStore, ["SET_NEWS_LIST"]),
     getNewsList() {
-      if (this.newsList) this.getNews(encodeURI("부동산")); // store/getNewsList
+      if (this.newsList) this.getNews("부동산"); // store/getNewsList
     },
   }
 };
-</script>z
+</script>
 <style scoped>
 .underline-hotpink {
   display: inline-block;

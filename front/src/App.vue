@@ -1,17 +1,38 @@
 <template>
   <div id="app">
     <the-header-navbar></the-header-navbar>
-    <router-view></router-view>
+    <div>
+      <router-view></router-view>
+    </div>
+    <b-container class="bv-example-row">
+      <b-row class="text-center mt-4">
+        <b-col cols="5">
+          <the-thumb-nail></the-thumb-nail>
+        </b-col>
+        <b-col></b-col>
+        <b-col cols="5">
+          <the-thumb-nail></the-thumb-nail>
+        </b-col>
+      </b-row>
+    </b-container>
+      <!-- <div> -->
+      <!-- <b-row class="mt-4">
+        <the-thumb-nail></the-thumb-nail>
+        <b-col>23</b-col>
+      </b-row> -->
+      <!-- </div> -->
   </div>
 </template>
 
 <script>
 import TheHeaderNavbar from "@/components/TheHeaderNavbar";
+import TheThumbNail from "@/components/TheThumbNail";
 
 export default {
   name: "App",
   components: {
     TheHeaderNavbar,
+    TheThumbNail,
   },
 };
 </script>
