@@ -13,7 +13,7 @@ import NewsThumbNailItem from '@/components/news/item/NewsThumbNailItem';
 
 
 export default {
-    name: "TheThumbNail",
+    name: "MainThumbNail",
     components: {
         NoticeThumbNailItem,
         NewsThumbNailItem

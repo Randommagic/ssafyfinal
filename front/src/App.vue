@@ -7,11 +7,11 @@
     <b-container class="bv-example-row">
       <b-row class="text-center mt-4">
         <b-col cols="5">
-          <the-thumb-nail></the-thumb-nail>
+          <main-thumb-nail></main-thumb-nail>
         </b-col>
         <b-col></b-col>
         <b-col cols="5">
-          <the-thumb-nail></the-thumb-nail>
+          <main-thumb-nail></main-thumb-nail>
         </b-col>
       </b-row>
     </b-container>
@@ -26,13 +26,13 @@
 
 <script>
 import TheHeaderNavbar from "@/components/TheHeaderNavbar";
-import TheThumbNail from "@/components/TheThumbNail";
+import MainThumbNail from "@/components/main/MainThumbNail";
 
 export default {
   name: "App",
   components: {
     TheHeaderNavbar,
-    TheThumbNail,
+    MainThumbNail,
   },
 };
 </script>

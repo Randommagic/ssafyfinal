@@ -1,16 +1,18 @@
 <template>
   <div id="container">
-    <house-search-bar></house-search-bar><b-button>test</b-button>
+    <b-row>
+      <main-search-bar></main-search-bar>
+    </b-row>
   </div>
 </template>
 
 <script>
-import HouseSearchBar from '@/components/house/HouseSearchBar';
+import MainSearchBar from '@/components/main/MainSearchBar';
 
 export default {
   name: "AppMain",
   components: {
-    HouseSearchBar,
+    MainSearchBar,
   },
   props: {
     msg: String,

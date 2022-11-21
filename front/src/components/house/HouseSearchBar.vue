@@ -1,13 +1,12 @@
 <template>
-  <b-row class="mb-4 text-center" style="width: 60%;
-    margin: auto;">
-    <b-col class="sm-3" style="margin-top: 340px;">
+  <b-row class="mb-4 text-center">
+    <b-col class="sm-3">
       <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
     </b-col>
-    <b-col class="sm-3" style="margin-top: 340px;">
+    <b-col class="sm-3">
       <b-form-select v-model="gugunCode" :options="guguns" @change="dongList"></b-form-select>
     </b-col>
-    <b-col class="sm-3" style="margin-top: 340px;">
+    <b-col class="sm-3">
       <b-form-select v-model="dongCode" :options="dongs" @change="searchApt"></b-form-select>
     </b-col>
   </b-row>
