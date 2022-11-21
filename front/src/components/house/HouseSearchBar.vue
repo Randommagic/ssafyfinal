@@ -12,6 +12,7 @@
   </b-row>
 </template>
 
+
 <script>
 import { mapState, mapActions, mapMutations } from "vuex";
 
@@ -49,11 +50,23 @@ export default {
     this.CLEAR_GUGUN_LIST();
     this.CLEAR_DONG_LIST();
     this.CLEAR_APT_LIST();
+    this.CLEAR_DONG();
     this.getSido();
   },
   methods: {
-    ...mapActions(houseStore, ["getSido", "getGugun", "getDong", "getHouseList"]),
-    ...mapMutations(houseStore, ["CLEAR_SIDO_LIST", "CLEAR_GUGUN_LIST", "CLEAR_DONG_LIST", "CLEAR_APT_LIST"]),
+    ...mapActions(houseStore, [
+      "getSido",
+      "getGugun",
+      "getDong",
+      "getHouseList",
+    ]),
+    ...mapMutations(houseStore, [
+      "CLEAR_SIDO_LIST",
+      "CLEAR_GUGUN_LIST",
+      "CLEAR_DONG_LIST",
+      "CLEAR_APT_LIST",
+      "CLEAR_DONG",
+    ]),
     // sidoList() {
     //   this.getSido();
     // },
@@ -68,12 +81,18 @@ export default {
       if (this.gugunCode) this.getDong(this.gugunCode);
     },
     searchApt() {
-      if (this.dongCode) this.getHouseList(this.dongCode);
+      const param = {
+        dong: this.dongCode,
+        minPriceRange: 0,
+        maxPriceRange: 500000,
+        minDateRange: "2019-01-01",
+        maxDateRange: "2019-12-31",
+      };
+
+      if (this.dongCode) this.getHouseList(param);
     },
   },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

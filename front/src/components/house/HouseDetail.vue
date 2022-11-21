@@ -2,39 +2,48 @@
   <b-container v-if="house" class="bv-example-row">
     <b-row>
       <b-col>
-        <h3>{{ house.아파트 }}</h3>
-      </b-col>
-    </b-row>
-    <b-row class="mb-2 mt-1">
-      <b-col>
-        <b-img :src="require('@/assets/apt.png')" fluid-grow></b-img>
+        <h3>{{ house.aptName }}</h3>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="secondary">일련번호 : {{ house.일련번호 }}</b-alert>
+        <b-alert show variant="secondary"
+          >일련번호 : {{ house.aptCode }}</b-alert
+        >
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="primary">아파트 이름 : {{ house.아파트 }} </b-alert>
+        <b-alert show variant="primary"
+          >아파트 이름 : {{ house.aptName }}
+        </b-alert>
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-alert show variant="info">법정동 : {{ house.법정동 }} </b-alert>
+        <b-alert show variant="info">법정동 : {{ house.dongCode }} </b-alert>
       </b-col>
     </b-row>
+
     <b-row>
       <b-col>
-        <b-alert show variant="warning">층수 : {{ house.층 }}층</b-alert>
+        <!-- <b-alert show variant="danger">거래금액 : {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원</b-alert> -->
       </b-col>
     </b-row>
-    <b-row>
-      <b-col>
-        <b-alert show variant="danger">거래금액 : {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원</b-alert>
-      </b-col>
-    </b-row>
+    <b-list-group
+      ><div v-for="(deal, index) in house.deals" :key="index">
+        <b-list-group-item
+          >거래날짜 :{{ deal.dealYear }}년 {{ deal.dealMonth }}월
+          {{ deal.dealDay }}일
+          <hr />
+          층 : {{ deal.floor }}
+          <hr />
+          거래가 :
+          {{
+            (parseInt(deal.dealAmount.replace(",", "")) * 10000) | price
+          }}원 </b-list-group-item
+        ><br /></div
+    ></b-list-group>
   </b-container>
   <b-container v-else class="bv-example-row mt-3">
     <b-row>
@@ -67,6 +76,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

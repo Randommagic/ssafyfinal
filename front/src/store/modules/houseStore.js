@@ -6,6 +6,7 @@ const houseStore = {
     sidos: [{ value: null, text: "선택하세요" }],
     guguns: [{ value: null, text: "선택하세요" }],
     dongs: [{ value: null, text: "선택하세요" }],
+    dong: null,
     houses: [],
     house: null,
   },
@@ -20,10 +21,14 @@ const houseStore = {
     CLEAR_DONG_LIST(state) {
       state.dongs = [{ value: null, text: "선택하세요" }];
     },
+    CLEAR_DONG(state) {
+      state.dong = null;
+    },
     CLEAR_APT_LIST(state) {
       state.houses = [];
       state.house = null;
     },
+
     SET_SIDO_LIST(state, sidos) {
       sidos.forEach((sido) => {
         state.sidos.push({ value: sido.sidoCode, text: sido.sidoName });
@@ -39,13 +44,16 @@ const houseStore = {
         state.dongs.push({ value: dong.dongCode, text: dong.dongName });
       });
     },
+    SET_DONG(state, dong) {
+      state.dong = dong;
+    },
     SET_HOUSE_LIST(state, houses) {
       state.houses = houses;
     },
     SET_DETAIL_HOUSE(state, house) {
       state.house = house;
     },
-	SET_DETAIL_HOUSE_BYNUMBER(state, num) {
+    SET_DETAIL_HOUSE_BYNUMBER(state, num) {
       state.house = state.houses[num];
     },
   },
@@ -85,14 +93,21 @@ const houseStore = {
         }
       );
     },
-    getHouseList: ({ commit }, dongCode) => {
-      const params = { dong: dongCode, };
+    getHouseList: ({ commit }, param) => {
+      commit("SET_DONG", param.dong);
+      commit("CLEAR_APT_LIST");
+      console.log(param.minDateRange, param.maxDateRange);
+      const params = {
+        dong: param.dong,
+        minPriceRange: param.minPriceRange,
+        maxPriceRange: param.maxPriceRange,
+        minDateRange: param.minDateRange,
+        maxDateRange: param.maxDateRange,
+      };
       houseList(
         params,
         ({ data }) => {
-          console.log(params);
           console.log(data);
-          console.log("test");
           commit("SET_HOUSE_LIST", data);
         },
         (error) => {
@@ -100,47 +115,13 @@ const houseStore = {
         }
       );
     },
-    // getHouseList: ({ commit }, dongCode) => {
-    //   const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
-    //   const params = {
-    //     LAWD_CD: dongCode,
-    //     DEAL_YMD: "202207",
-    //     serviceKey: decodeURIComponent(SERVICE_KEY),
-    //   };
-    //   houseList(
-    //     params,
-    //     ({ data }) => {
-    //       commit("SET_HOUSE_LIST", data.response.body.items.item);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
-    // },
-    // getHouseList: ({ commit }, gugunCode) => {
-    //   const SERVICE_KEY = process.env.VUE_APP_APT_DEAL_API_KEY;
-    //   const params = {
-    //     LAWD_CD: gugunCode,
-    //     DEAL_YMD: "202207",
-    //     serviceKey: decodeURIComponent(SERVICE_KEY),
-    //   };
-    //   houseList(
-    //     params,
-    //     ({ data }) => {
-    //       commit("SET_HOUSE_LIST", data.response.body.items.item);
-    //     },
-    //     (error) => {
-    //       console.log(error);
-    //     }
-    //   );
-    // },
+
     detailHouse: ({ commit }, house) => {
       // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_HOUSE", house);
     },
-	detailHouseByNumber: ({ commit }, num) => {
-      console.log("hi");
-      commit("SET_DETAIL_HOUSE_BYNUMBER", Number(num));
+    detailHouseByNumber: ({ commit }, num) => {
+      commit("SET_DETAIL_HOUSE_BYNUMBER", num);
     },
   },
 };
