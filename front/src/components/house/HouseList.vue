@@ -39,14 +39,16 @@
         ></b-form-datepicker>
 
         {{ filter.minDate }} ~ {{ filter.maxDate }} <br />
+        <hr />
       </div>
-      <hr />
-      <b-button class="mx-2" variant="secondary" @click="resetFilter">
-        필터 초기화</b-button
-      >
-      <b-button class="mx-2" variant="success" @click="applyFilter">
-        필터 설정</b-button
-      >
+      <div class="px-3 py-2">
+        <b-button class="mx-2" variant="secondary" @click="resetFilter">
+          필터 초기화</b-button
+        >
+        <b-button class="mx-2" variant="success" @click="applyFilter">
+          필터 설정</b-button
+        >
+      </div>
     </b-sidebar>
     <div id="map"></div>
   </div>
