@@ -32,28 +32,19 @@
         <div>
           <b-tabs id="filter" pills size="sm">
             <hr />
-            <b-tab title="가격" active
-              ><label for="minRange">최소 가격</label>
-              <b-form-input
-                id="minRange"
-                v-model="filter.minRange"
-                type="range"
-                min="0"
-                :max="filter.maxRange"
-                step="1"
+
+            <b-tab title="가격" active>
+              <!-- https://nightcatsama.github.io/vue-slider-component/#/  슬라이더 관련 -->
+              <vue-slider
+                v-model="filter.priceRange"
+                :min="0"
+                :max="50"
                 @change="applyFilter"
-              ></b-form-input>
-              <label for="maxRange">최대 가격</label>
-              <b-form-input
-                id="maxRange"
-                v-model="filter.maxRange"
-                type="range"
-                :min="filter.minRange"
-                max="50"
-                step="1"
-                @change="applyFilter"
-              ></b-form-input>
-              {{ filter.minRange }} 억 ~ {{ filter.maxRange }} 억</b-tab
+                :lazy="true"
+              ></vue-slider>
+
+              {{ filter.priceRange[0] }} 억 ~
+              {{ filter.priceRange[1] }} 억</b-tab
             >
             <b-tab title="날짜"
               ><label for="minDate">시작 날짜</label>
@@ -103,7 +94,7 @@ import { mapState, mapActions, mapMutations } from "vuex";
     키: 값
     memberStore: memberStore,
     houseStore: houseStore
-  }  
+  }
 */
 const houseStore = "houseStore";
 
@@ -112,8 +103,7 @@ export default {
   data() {
     return {
       filter: {
-        minRange: "0",
-        maxRange: "50",
+        priceRange: [0, 50],
         minDate: "2019-01-01",
         maxDate: "2019-12-31",
       },
@@ -185,17 +175,18 @@ export default {
 
       const param = {
         dong: this.dongCode,
-        minPriceRange: Number(this.filter.minRange) * 10000,
-        maxPriceRange: Number(this.filter.maxRange) * 10000,
+
+        minPriceRange: Number(this.filter.priceRange[0]) * 10000,
+        maxPriceRange: Number(this.filter.priceRange[1]) * 10000,
         minDateRange: this.filter.minDate,
         maxDateRange: this.filter.maxDate,
       };
 
       this.$emit("getHouseList", param);
     },
+
     resetFilter() {
-      this.filter.minRange = 0;
-      this.filter.maxRange = 50;
+      this.filter.priceRange = [0, 50];
       this.filter.minDate = "2019-01-01";
       this.filter.maxDate = "2019-12-31";
       this.applyFilter();

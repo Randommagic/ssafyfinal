@@ -1,12 +1,12 @@
-package com.april2nd.happyhouse.model.mapper;
+package com.ssafy.vue.model.mapper;
 
 import java.sql.SQLException;
 import java.util.List;
 
-import com.april2nd.happyhouse.model.NoticeDto;
+import com.ssafy.vue.model.NoticeDto;
 import org.apache.ibatis.annotations.Mapper;
 
-import com.april2nd.happyhouse.model.BoardParameterDto;
+import com.ssafy.vue.model.BoardParameterDto;
 
 @Mapper
 public interface NoticeMapper {

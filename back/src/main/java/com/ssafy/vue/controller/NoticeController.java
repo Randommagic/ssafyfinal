@@ -1,9 +1,9 @@
-package com.april2nd.happyhouse.controller;
+package com.ssafy.vue.controller;
 
 import java.util.List;
 
-import com.april2nd.happyhouse.model.NoticeDto;
-import com.april2nd.happyhouse.model.service.NoticeService;
+import com.ssafy.vue.model.NoticeDto;
+import com.ssafy.vue.model.service.NoticeService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.april2nd.happyhouse.model.NoticeDto;
-import com.april2nd.happyhouse.model.BoardParameterDto;
-import com.april2nd.happyhouse.model.service.BoardService;
+import com.ssafy.vue.model.NoticeDto;
+import com.ssafy.vue.model.BoardParameterDto;
+import com.ssafy.vue.model.service.BoardService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;

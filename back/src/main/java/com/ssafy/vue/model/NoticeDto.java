@@ -1,4 +1,4 @@
-package com.april2nd.happyhouse.model;
+package com.ssafy.vue.model;
 
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;

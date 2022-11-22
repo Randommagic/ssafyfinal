@@ -1,10 +1,10 @@
-package com.april2nd.happyhouse.model.service;
+package com.ssafy.vue.model.service;
 
 import java.util.List;
 
-import com.april2nd.happyhouse.model.NoticeDto;
-import com.april2nd.util.PageNavigation;
-import com.april2nd.happyhouse.model.BoardParameterDto;
+import com.ssafy.vue.model.NoticeDto;
+import com.ssafy.util.PageNavigation;
+import com.ssafy.vue.model.BoardParameterDto;
 import org.springframework.stereotype.Service;
 
 public interface NoticeService {

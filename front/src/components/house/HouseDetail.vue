@@ -11,9 +11,9 @@
           >건축년도 : {{ house.buildYear }} 년
         </b-alert>
         <hr />
-        <b-list-group
-          ><div v-for="(deal, index) in house.deals" :key="index">
-            <b-list-group-item
+        <b-list-group id="houselist">
+          <div v-for="(deal, index) in house.deals" :key="index">
+            <b-list-group-item class="mx-3"
               >거래날짜 :{{ deal.dealYear }}년 {{ deal.dealMonth }}월
               {{ deal.dealDay }}일
               <hr />
@@ -23,8 +23,9 @@
               {{
                 (parseInt(deal.dealAmount.replace(",", "")) * 10000) | price
               }}원 </b-list-group-item
-            ><br /></div
-        ></b-list-group>
+            ><br />
+          </div>
+        </b-list-group>
       </b-card>
     </div>
     <div v-else class="bv-example-row mt-3">
@@ -67,12 +68,17 @@ export default {
   top: 11%;
   /* bottom : 10px; */
   right: 1%;
-  width: 25rem;
+  width: 30rem;
 
   padding: 10px;
   z-index: 100;
   overflow-y: auto;
 
   /* height: 100vh; */
+}
+
+#houselist {
+  max-height: 300px;
+  overflow: scroll;
 }
 </style>

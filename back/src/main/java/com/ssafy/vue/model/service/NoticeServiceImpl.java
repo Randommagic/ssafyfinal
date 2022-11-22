@@ -1,9 +1,9 @@
-package com.april2nd.happyhouse.model.service;
+package com.ssafy.vue.model.service;
 
-import com.april2nd.happyhouse.model.BoardParameterDto;
-import com.april2nd.happyhouse.model.NoticeDto;
-import com.april2nd.happyhouse.model.mapper.NoticeMapper;
-import com.april2nd.util.PageNavigation;
+import com.ssafy.vue.model.BoardParameterDto;
+import com.ssafy.vue.model.NoticeDto;
+import com.ssafy.vue.model.mapper.NoticeMapper;
+import com.ssafy.util.PageNavigation;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
