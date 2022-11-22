@@ -33,5 +33,16 @@
 		set token = #{token, jdbcType=VARCHAR}
 		where userid = #{userid}
 	</update>
+	<insert id="registUser" parameterType="memberDto">
+		insert
+		into ssafy_member(userid, userpwd, username, email)
+		values(#{userid}, #{userpwd}, #{username}, #{email})
+	</insert>
+
+	<delete id="removeUser" parameterType="String">
+		delete
+		from ssafy_member
+		where userid = #{userid}
+	</delete>
 	
 </mapper>
