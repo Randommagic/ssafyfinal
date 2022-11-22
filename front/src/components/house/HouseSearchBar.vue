@@ -38,7 +38,7 @@
               <vue-slider
                 v-model="filter.priceRange"
                 :min="0"
-                :max="50"
+                :max="60"
                 @change="applyFilter"
                 :lazy="true"
               ></vue-slider>
@@ -103,7 +103,7 @@ export default {
   data() {
     return {
       filter: {
-        priceRange: [0, 50],
+        priceRange: [0, 60],
         minDate: "2019-01-01",
         maxDate: "2019-12-31",
       },
@@ -160,7 +160,7 @@ export default {
       const param = {
         dong: this.dongCode,
         minPriceRange: 0,
-        maxPriceRange: 500000,
+        maxPriceRange: 600000,
         minDateRange: "2019-01-01",
         maxDateRange: "2019-12-31",
       };
@@ -175,7 +175,6 @@ export default {
 
       const param = {
         dong: this.dongCode,
-
         minPriceRange: Number(this.filter.priceRange[0]) * 10000,
         maxPriceRange: Number(this.filter.priceRange[1]) * 10000,
         minDateRange: this.filter.minDate,
@@ -186,7 +185,7 @@ export default {
     },
 
     resetFilter() {
-      this.filter.priceRange = [0, 50];
+      this.filter.priceRange = [0, 60];
       this.filter.minDate = "2019-01-01";
       this.filter.maxDate = "2019-12-31";
       this.applyFilter();

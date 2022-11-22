@@ -30,10 +30,13 @@ public class HouseInfoDto {
 	private String lng;
 
 	private List<DealInfoDto> deals;
-	
+	private List<DealInfoDto> filteredDeals;
+
 	public String getAptCode() {
 		return aptCode;
 	}
+
+
 
 	public void setAptCode(String aptCode) {
 		this.aptCode = aptCode;
@@ -119,4 +122,11 @@ public class HouseInfoDto {
 		this.deals = deals;
 	}
 
+	public List<DealInfoDto> getFilteredDeals() {
+		return filteredDeals;
+	}
+
+	public void setFilteredDeals(List<DealInfoDto> filteredDeals) {
+		this.filteredDeals = filteredDeals;
+	}
 }

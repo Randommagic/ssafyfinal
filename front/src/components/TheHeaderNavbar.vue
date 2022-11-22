@@ -96,7 +96,7 @@ export default {
       // this.SET_USER_INFO(null);
       // sessionStorage.removeItem("access-token");
       // if (this.$route.path != "/") this.$router.push({ name: "main" });
-      console.log(this.userInfo.userid);
+      // console.log(this.userInfo.userid);
       //vuex actions에서 userLogout 실행(Backend에 저장 된 리프레시 토큰 없애기
       //+ satate에 isLogin, userInfo 정보 변경)
       // this.$store.dispatch("userLogout", this.userInfo.userid);

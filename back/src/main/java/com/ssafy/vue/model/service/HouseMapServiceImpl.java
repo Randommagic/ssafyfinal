@@ -36,9 +36,12 @@ public class HouseMapServiceImpl implements HouseMapService {
 	public List<HouseInfoDto> getAptInDong(String dong, String minPriceRange, String maxPriceRange, String minDateRange, String maxDateRange) throws Exception {
 		List<HouseInfoDto> list = sqlSession.getMapper(HouseMapMapper.class).getAptInDong(dong);
 		for (int i = 0; i < list.size(); i++) {
+			List<DealInfoDto> filteredDealList = sqlSession.getMapper(HouseMapMapper.class)
+					.getAptFilteredDeals(list.get(i).getAptCode(), minPriceRange, maxPriceRange, minDateRange, maxDateRange);
 			List<DealInfoDto> dealList = sqlSession.getMapper(HouseMapMapper.class)
-					.getAptDeals(list.get(i).getAptCode(), minPriceRange, maxPriceRange, minDateRange, maxDateRange);
+					.getAptDeals(list.get(i).getAptCode());
 			list.get(i).setDeals(dealList);
+			list.get(i).setFilteredDeals(filteredDealList);
 		}
 		return list;
 	}

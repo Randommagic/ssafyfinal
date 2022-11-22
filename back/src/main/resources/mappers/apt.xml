@@ -44,8 +44,18 @@
 		order by aptName
 	</select>
 	
+	
+
+	
 	<select id="getAptDeals" parameterType="string" resultType="DealInfoDto">
-		select no, aptCode, dealAmount, dealYear, dealMonth, dealDay, area, floor 
+		select no, dealAmount, dealYear, dealMonth, dealDay, area, floor 
+		from housedeal
+		where aptCode = #{apt} 
+		order by no
+	</select>
+	
+	<select id="getAptFilteredDeals" parameterType="string" resultType="DealInfoDto">
+		select no, dealAmount, dealYear, dealMonth, dealDay, area, floor 
 		from housedeal
 		where aptCode = #{apt} 
 		AND CAST(replace(dealAmount, ',' , '') AS SIGNED) between #{minPriceRange} and #{maxPriceRange}

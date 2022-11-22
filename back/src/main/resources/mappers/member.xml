@@ -11,7 +11,7 @@
 	</select>
 	
 	<select id="userInfo" parameterType="string" resultType="memberDto">
-		select username, userid, email, joindate
+		select username, userid, email, joindate, category
 		from ssafy_member
 		where userid = #{userid}
 	</select>

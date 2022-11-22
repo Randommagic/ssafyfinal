@@ -79,7 +79,7 @@ export default {
     displayMarker() {
       this.removeMarker();
       for (let i = 0; i < this.infos.length; i++) {
-        if (this.infos[i].deals.length == 0) continue;
+        if (this.infos[i].filteredDeals.length == 0) continue;
         let marker = new kakao.maps.Marker({
           position: new kakao.maps.LatLng(this.infos[i].lat, this.infos[i].lng),
           clickable: true,
@@ -142,7 +142,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 #map {
   width: 100%;
   height: 53rem;

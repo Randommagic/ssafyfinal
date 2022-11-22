@@ -1,5 +1,7 @@
 package com.ssafy.vue.model;
 
+import java.util.List;
+
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 
@@ -16,6 +18,28 @@ public class MemberDto {
 	private String email;
 	@ApiModelProperty(value = "회원 가입일")
 	private String joindate;
+	@ApiModelProperty(value = "회원 구분")
+	private String category;
+	
+	@ApiModelProperty(value = "아파트 매물 즐겨찾기 리스트")
+	private List<String> aptFavorite;
+	
+
+	public List<String> getAptFavorite() {
+		return aptFavorite;
+	}
+
+	public void setAptFavorite(List<String> aptFavorite) {
+		this.aptFavorite = aptFavorite;
+	}
+
+	public String getCategory() {
+		return category;
+	}
+
+	public void setCategory(String category) {
+		this.category = category;
+	}
 
 	public String getUserid() {
 		return userid;
