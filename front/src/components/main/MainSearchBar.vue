@@ -1,5 +1,5 @@
 <template>
-    <!-- <b-row class="mb-4 text-center" style="width: 60%;
+    <b-row class="mb-4 text-center" style="width: 60%;
       margin: auto;">
       <b-col class="sm-3" style="margin-top: 340px;">
         <b-form-select v-model="sidoCode" :options="sidos" @change="gugunList"></b-form-select>
@@ -13,10 +13,7 @@
       <b-col class="sm-3" style="margin-top: 340px;">
         <b-button>test</b-button>
       </b-col>
-    </b-row> -->
-    <b-container>
-        
-    </b-container>
+    </b-row>
   </template>
   
   <script>
@@ -82,6 +79,5 @@
   </script>
   
   <style>
-  
   </style>
   
