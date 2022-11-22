@@ -20,17 +20,16 @@ public class MemberDto {
 	private String joindate;
 	@ApiModelProperty(value = "회원 구분")
 	private String category;
-	
-	@ApiModelProperty(value = "아파트 매물 즐겨찾기 리스트")
-	private List<String> aptFavorite;
-	
 
-	public List<String> getAptFavorite() {
-		return aptFavorite;
+	@ApiModelProperty(value = "아파트 매물 즐겨찾기 리스트")
+	private List<BookmarkDto> aptBookmark;
+
+	public List<BookmarkDto> getAptBookmark() {
+		return aptBookmark;
 	}
 
-	public void setAptFavorite(List<String> aptFavorite) {
-		this.aptFavorite = aptFavorite;
+	public void setAptBookmark(List<BookmarkDto> aptBookmark) {
+		this.aptBookmark = aptBookmark;
 	}
 
 	public String getCategory() {

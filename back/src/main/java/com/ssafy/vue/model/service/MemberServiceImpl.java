@@ -25,7 +25,10 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public MemberDto userInfo(String userid) throws Exception {
-		return sqlSession.getMapper(MemberMapper.class).userInfo(userid);
+		MemberDto user = sqlSession.getMapper(MemberMapper.class).userInfo(userid);
+		// 아파트 찜 목록도 같이 받아오기.
+		user.setAptBookmark(sqlSession.getMapper(MemberMapper.class).getBookmarkApt(userid));
+		return user;
 	}
 
 	@Override
@@ -64,4 +67,8 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberMapper.class).removeUser(userid) == 1;
 	}
 
+	@Override
+	public void newBookmark(String userid, String aptCode) throws Exception {
+		sqlSession.getMapper(MemberMapper.class).newBookmark(userid, aptCode);
+	}
 }
