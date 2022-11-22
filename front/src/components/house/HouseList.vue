@@ -1,80 +1,26 @@
 <template>
   <div>
-    <b-sidebar id="sidebar-1" title="검색 필터" shadow>
-      <div class="px-3 py-2">
-        <p>최소 가격</p>
-        <b-form-input
-          id="minRange"
-          v-model="filter.minRange"
-          type="range"
-          min="0"
-          :max="filter.maxRange"
-          step="1"
-        ></b-form-input>
-        <p>최대 가격</p>
-        <b-form-input
-          id="maxRange"
-          v-model="filter.maxRange"
-          type="range"
-          :min="filter.minRange"
-          max="50"
-          step="1"
-        ></b-form-input>
-        {{ filter.minRange }} 억 ~ {{ filter.maxRange }} 억 <br />
-        <hr />
-        <p>시작 날짜</p>
-        <b-form-datepicker
-          id="minDate"
-          v-model="filter.minDate"
-          class="mb-2"
-        ></b-form-datepicker>
-        <br />
-
-        <p>끝 날짜</p>
-        <b-form-datepicker
-          id="maxDate"
-          v-model="filter.maxDate"
-          class="mb-2"
-        ></b-form-datepicker>
-
-        {{ filter.minDate }} ~ {{ filter.maxDate }} <br />
-        <hr />
-      </div>
-      <div class="px-3 py-2">
-        <b-button class="mx-2" variant="secondary" @click="resetFilter">
-          필터 초기화</b-button
-        >
-        <b-button class="mx-2" variant="success" @click="applyFilter">
-          필터 설정</b-button
-        >
-      </div>
-    </b-sidebar>
-    <b-button class="my-2" variant="outline-primary" v-b-toggle.sidebar-1
-      >필터 열기</b-button
-    >
     <div id="map"></div>
-    <div id="searchBox">
-      <b-card> </b-card>
-    </div>
+    <HouseSearchBar
+      :filter="filter"
+      @getHouseList="getHouseList"
+    ></HouseSearchBar>
   </div>
 </template>
 
 <script>
 import { mapState, mapActions } from "vuex";
-
+import HouseSearchBar from "@/components/house/HouseSearchBar.vue";
 const houseStore = "houseStore";
 
 export default {
   name: "HouseList",
-  components: {},
+  components: {
+    HouseSearchBar,
+  },
   data() {
     return {
-      filter: {
-        minRange: "0",
-        maxRange: "50",
-        minDate: "2019-01-01",
-        maxDate: "2019-12-31",
-      },
+      filter: {},
 
       map: null,
       latitude: 37.501273,
@@ -180,30 +126,6 @@ export default {
         infowindow.close();
       };
     },
-
-    applyFilter() {
-      if (!this.dong) {
-        alert("동을 먼저 선택해주세요.");
-        return;
-      }
-
-      const param = {
-        dong: this.dong,
-        minPriceRange: Number(this.filter.minRange) * 10000,
-        maxPriceRange: Number(this.filter.maxRange) * 10000,
-        minDateRange: this.filter.minDate,
-        maxDateRange: this.filter.maxDate,
-      };
-
-      this.getHouseList(param);
-    },
-    resetFilter() {
-      this.filter.minRange = 0;
-      this.filter.maxRange = 50;
-      this.filter.minDate = "2019-01-01";
-      this.filter.maxDate = "2019-12-31";
-      this.applyFilter();
-    },
   },
   computed: {
     ...mapState(houseStore, ["houses", "dong"]),
@@ -223,18 +145,6 @@ export default {
 <style>
 #map {
   width: 100%;
-  height: 500px;
-}
-#searchBox {
-  position: absolute;
-  top: 50px;
-  /* bottom : 10px; */
-  left: 20px;
-  width: 200px;
-  /* height: 400px; */
-  padding: 10px;
-  z-index: 100;
-
-  overflow-y: auto;
+  height: 700px;
 }
 </style>

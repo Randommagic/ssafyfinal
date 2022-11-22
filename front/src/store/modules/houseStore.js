@@ -3,9 +3,9 @@ import { sidoList, gugunList, houseList, dongList } from "@/api/house.js";
 const houseStore = {
   namespaced: true,
   state: {
-    sidos: [{ value: null, text: "선택하세요" }],
-    guguns: [{ value: null, text: "선택하세요" }],
-    dongs: [{ value: null, text: "선택하세요" }],
+    sidos: [{ value: null, text: "시/도" }],
+    guguns: [{ value: null, text: "구/군" }],
+    dongs: [{ value: null, text: "동" }],
     dong: null,
     houses: [],
     house: null,
@@ -13,13 +13,13 @@ const houseStore = {
   getters: {},
   mutations: {
     CLEAR_SIDO_LIST(state) {
-      state.sidos = [{ value: null, text: "선택하세요" }];
+      state.sidos = [{ value: null, text: "시/도" }];
     },
     CLEAR_GUGUN_LIST(state) {
-      state.guguns = [{ value: null, text: "선택하세요" }];
+      state.guguns = [{ value: null, text: "구/군" }];
     },
     CLEAR_DONG_LIST(state) {
-      state.dongs = [{ value: null, text: "선택하세요" }];
+      state.dongs = [{ value: null, text: "동" }];
     },
     CLEAR_DONG(state) {
       state.dong = null;
