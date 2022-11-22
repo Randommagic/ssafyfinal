@@ -9,9 +9,7 @@
     </b-row>
     <b-row class="mb-1">
       <b-col class="text-right">
-        <b-button variant="outline-primary" @click="moveWrite()"
-          >글쓰기</b-button
-        >
+        <b-button variant="outline-primary" v-if="userInfo.category == '1'" @click="moveWrite()">글쓰기</b-button>
       </b-col>
     </b-row>
     <b-row>
@@ -47,6 +45,9 @@
 
 <script>
 import { listArticle } from "@/api/notice";
+import { mapState } from "vuex";
+
+const memberStore = "memberStore";
 
 export default {
   name: "NoticeList",
@@ -65,6 +66,7 @@ export default {
     };
   },
   computed: {
+    ...mapState(memberStore, ["userInfo"]),
     rows() {
       return this.articles.length;
     },

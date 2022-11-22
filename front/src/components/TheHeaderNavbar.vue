@@ -32,7 +32,6 @@
           </b-nav-item>
         </b-navbar-nav>
 
-        <!-- 관리자 -->
         <b-navbar-nav class="ml-auto" v-if="userInfo">
           <b-nav-item-dropdown
             id="my-nav-dropdown"
@@ -60,8 +59,6 @@
             >
           </b-nav-item-dropdown>
         </b-navbar-nav>
-        <!-- 일반 유저-->
-        <!-- before login -->
         <b-navbar-nav class="ml-auto" v-else>
           <b-dropdown-item>
             <router-link :to="{ name: 'login' }" class="link"
@@ -92,14 +89,7 @@ export default {
     ...mapActions(memberStore, ["userLogout"]),
     // ...mapMutations(memberStore, ["SET_IS_LOGIN", "SET_USER_INFO"]),
     onClickLogout() {
-      // this.SET_IS_LOGIN(false);
-      // this.SET_USER_INFO(null);
-      // sessionStorage.removeItem("access-token");
-      // if (this.$route.path != "/") this.$router.push({ name: "main" });
       console.log(this.userInfo.userid);
-      //vuex actions에서 userLogout 실행(Backend에 저장 된 리프레시 토큰 없애기
-      //+ satate에 isLogin, userInfo 정보 변경)
-      // this.$store.dispatch("userLogout", this.userInfo.userid);
       this.userLogout(this.userInfo.userid);
       sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
       sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
