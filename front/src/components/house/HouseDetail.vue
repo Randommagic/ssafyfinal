@@ -2,38 +2,15 @@
   <div id="houseDetail">
     <div v-if="house" class="bv-example-row">
       <b-card>
-        <b-row>
-          <b-col>
-            <h3>{{ house.aptName }}</h3>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-alert show variant="secondary"
-              >일련번호 : {{ house.aptCode }}</b-alert
-            >
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-alert show variant="primary"
-              >아파트 이름 : {{ house.aptName }}
-            </b-alert>
-          </b-col>
-        </b-row>
-        <b-row>
-          <b-col>
-            <b-alert show variant="info"
-              >법정동 : {{ house.dongCode }}
-            </b-alert>
-          </b-col>
-        </b-row>
-
-        <b-row>
-          <b-col>
-            <!-- <b-alert show variant="danger">거래금액 : {{ (parseInt(house.거래금액.replace(",", "")) * 10000) | price }}원</b-alert> -->
-          </b-col>
-        </b-row>
+        <h3>{{ house.aptName }}</h3>
+        <hr />
+        <b-alert show variant="primary"
+          >아파트 이름 : {{ house.aptName }}
+        </b-alert>
+        <b-alert show variant="info"
+          >건축년도 : {{ house.buildYear }} 년
+        </b-alert>
+        <hr />
         <b-list-group
           ><div v-for="(deal, index) in house.deals" :key="index">
             <b-list-group-item
@@ -91,9 +68,11 @@ export default {
   /* bottom : 10px; */
   right: 1%;
   width: 25rem;
-  /* height: 400px; */
+
   padding: 10px;
   z-index: 100;
   overflow-y: auto;
+
+  /* height: 100vh; */
 }
 </style>
