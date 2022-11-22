@@ -70,6 +70,26 @@ public class MemberController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
+	@ApiOperation(value = "회원가입", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
+	@PostMapping("/join")
+	public ResponseEntity<String> joinUser(
+			@RequestBody @ApiParam(value = "회원가입 정보( json )", required = true) MemberDto memberDto) throws Exception{
+		if (memberService.joinUser(memberDto)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+
+	@ApiOperation(value = "회원탈퇴", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
+	@DeleteMapping("/{userid}")
+	public ResponseEntity<String> deleteUser(
+			@PathVariable @ApiParam(value = "회원가입 정보( json )", required = true) String userid) throws Exception{
+		if (memberService.deleteUser(userid)) {
+			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		}
+		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+	}
+
 	@ApiOperation(value = "회원인증", notes = "회원 정보를 담은 Token을 반환한다.", response = Map.class)
 	@GetMapping("/info/{userid}")
 	public ResponseEntity<Map<String, Object>> getInfo(

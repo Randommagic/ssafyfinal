@@ -43,8 +43,8 @@
           </b-container>
           <hr class="my-4" />
 
-          <b-button variant="primary" href="#" class="mr-1">정보수정</b-button>
-          <b-button variant="danger" href="#">회원탈퇴</b-button>
+          <b-button variant="primary" to="/user/" class="mr-1">정보수정</b-button>
+          <b-button variant="danger" @click="checkMsg()">회원탈퇴</b-button>
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -63,6 +63,8 @@ export default {
   computed: {
     ...mapState(memberStore, ["userInfo"]),
   },
+  methods: {
+  }
 };
 </script>
 

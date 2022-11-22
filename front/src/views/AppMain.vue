@@ -1,18 +1,13 @@
 <template>
   <div id="container">
-    <b-row>
-      <main-search-bar></main-search-bar>
-    </b-row>
   </div>
 </template>
 
 <script>
-import MainSearchBar from '@/components/main/MainSearchBar';
 
 export default {
   name: "AppMain",
   components: {
-    MainSearchBar,
   },
   props: {
     msg: String,

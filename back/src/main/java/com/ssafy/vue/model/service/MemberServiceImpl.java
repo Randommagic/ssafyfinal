@@ -48,5 +48,20 @@ public class MemberServiceImpl implements MemberService {
 		map.put("token", null);
 		sqlSession.getMapper(MemberMapper.class).deleteRefreshToken(map);
 	}
+	@Override
+	public boolean joinUser(MemberDto memberDto) throws Exception {
+		if(memberDto.getUserid() == null || memberDto.getUserpwd() == null) {
+			throw new Exception();
+		}
+		return sqlSession.getMapper(MemberMapper.class).registUser(memberDto) == 1;
+	}
+
+	@Override
+	public boolean deleteUser(String userid) throws Exception {
+		if(userid == "" || userid == null) {
+			throw new Exception();
+		}
+		return sqlSession.getMapper(MemberMapper.class).removeUser(userid) == 1;
+	}
 
 }
