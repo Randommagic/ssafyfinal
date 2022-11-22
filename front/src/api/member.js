@@ -21,7 +21,6 @@ async function logout(userid, success, fail) {
 }
 
 async function joinUser(user, success, fail) {
-  console.log(JSON.stringify(user));
   await api.post(`/user/join`, JSON.stringify(user)).then(success).catch(fail);
 }
 
