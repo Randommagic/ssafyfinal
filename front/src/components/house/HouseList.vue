@@ -1,6 +1,5 @@
 <template>
   <div>
-    <b-button v-b-toggle.sidebar-1>필터 열기</b-button>
     <b-sidebar id="sidebar-1" title="검색 필터" shadow>
       <div class="px-3 py-2">
         <p>최소 가격</p>
@@ -50,7 +49,13 @@
         >
       </div>
     </b-sidebar>
+    <b-button class="my-2" variant="outline-primary" v-b-toggle.sidebar-1
+      >필터 열기</b-button
+    >
     <div id="map"></div>
+    <div id="searchBox">
+      <b-card> </b-card>
+    </div>
   </div>
 </template>
 
@@ -219,5 +224,17 @@ export default {
 #map {
   width: 100%;
   height: 500px;
+}
+#searchBox {
+  position: absolute;
+  top: 50px;
+  /* bottom : 10px; */
+  left: 20px;
+  width: 200px;
+  /* height: 400px; */
+  padding: 10px;
+  z-index: 100;
+
+  overflow-y: auto;
 }
 </style>
