@@ -59,4 +59,12 @@
 		values(#{userId}, #{aptCode})
 	</insert>
 	
+	<delete id="deleteBookmark" parameterType="String">
+		delete
+		from bookmark
+		where userId = #{userId}
+		and aptCode = #{aptCode}
+	</delete>
+	
+	
 </mapper>

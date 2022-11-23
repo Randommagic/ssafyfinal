@@ -1,6 +1,7 @@
 package com.ssafy.vue.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,8 +20,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ssafy.vue.model.BookmarkDto;
 import com.ssafy.vue.model.MemberDto;
-import com.ssafy.vue.model.SearchResultDto;
 import com.ssafy.vue.model.service.JwtServiceImpl;
 import com.ssafy.vue.model.service.MemberService;
 
@@ -76,7 +77,7 @@ public class MemberController {
 	@ApiOperation(value = "회원가입", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
 	@PostMapping("/join")
 	public ResponseEntity<String> joinUser(
-			@RequestBody @ApiParam(value = "회원가입 정보( json )", required = true) MemberDto memberDto) throws Exception{
+			@RequestBody @ApiParam(value = "회원가입 정보( json )", required = true) MemberDto memberDto) throws Exception {
 		if (memberService.joinUser(memberDto)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
@@ -86,7 +87,7 @@ public class MemberController {
 	@ApiOperation(value = "회원탈퇴", notes = "Access-token과 로그인 결과 메세지를 반환한다.", response = Map.class)
 	@DeleteMapping("/{userid}")
 	public ResponseEntity<String> deleteUser(
-			@PathVariable @ApiParam(value = "회원가입 정보( json )", required = true) String userid) throws Exception{
+			@PathVariable @ApiParam(value = "회원가입 정보( json )", required = true) String userid) throws Exception {
 		if (memberService.deleteUser(userid)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
@@ -164,17 +165,48 @@ public class MemberController {
 		return new ResponseEntity<Map<String, Object>>(resultMap, status);
 	}
 
-	
-	@ApiOperation(value = "찜하기", notes = "아파트를 찜 목록에 추가한다.", response = Map.class)
+	@ApiOperation(value = "북마크 얻기", notes = "유저의 아파트 북마크 목록을 가져온다.", response = Map.class)
+	@GetMapping("/bookmark")
+	public ResponseEntity<List<BookmarkDto>> addBookmark(@RequestParam String userId) throws Exception {
+		return new ResponseEntity<List<BookmarkDto>>(memberService.getBookmarks(userId), HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "북마크 추가", notes = "아파트를 북마크 목록에 추가하고 북마크 목록을 반환한다.", response = Map.class)
 	@PostMapping("/bookmark")
-	public ResponseEntity<?> addBookmark(@RequestBody Map<String,String> map) throws Exception {
+	public ResponseEntity<?> addBookmark(@RequestBody Map<String, String> map) {
 		
 		String aptCode = map.get("aptCode");
 		String userId = map.get("userId");
-		if (memberService.newBookmark(userId, aptCode)) {
-			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
+		
+		System.out.println("addbookmark-> "  + aptCode + " " + userId);
+		
+		List<BookmarkDto> list = null;
+		try {
+			list = memberService.newBookmark(userId, aptCode);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 		}
-		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+
+		return new ResponseEntity<List<BookmarkDto>>(list, HttpStatus.OK);
+	}
+
+	@ApiOperation(value = "북마크 삭제", notes = "북마크 목록에 있는 북마크를 삭제하고 북마크 목록을 반환한다.", response = Map.class)
+	@DeleteMapping("/bookmark")
+	public ResponseEntity<?> deleteBookmark(@RequestBody Map<String, String> map){
+
+		String aptCode = map.get("aptCode");
+		String userId = map.get("userId");
+		
+		System.out.println("delbookmark-> "  + aptCode + " " + userId);
+		
+		List<BookmarkDto> list = null;
+		try {
+			list = memberService.deleteBookmark(userId, aptCode);
+		} catch (Exception e) {
+			return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
+		}
+
+		return new ResponseEntity<List<BookmarkDto>>(list, HttpStatus.OK);
 	}
 
 }

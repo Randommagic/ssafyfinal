@@ -9,40 +9,48 @@
             </b-button-group>
     </b-container> -->
     <div>
-        <b-input-group prepend="아파트 명" class="mt-3">
-            <b-form-input v-model="aptInfo.aptCode" readonly></b-form-input>
+        <b-input-group v-for="(apt, index) in userInfo.aptBookmark" :key="index" prepend="아파트 명" class="mt-3">
+            <b-form-input v-model="apt.aptCode" readonly></b-form-input>
             <b-input-group-append>
-                <b-button variant="primary" @click="removeApt">지도</b-button>
-                <b-button variant="danger" @click="removeApt">삭제</b-button>
+                <b-button variant="primary">지도</b-button>
+                <b-button variant="danger" @click="removeBookmark(apt.aptCode)">삭제</b-button>
             </b-input-group-append>
         </b-input-group>
     </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapState, mapActions } from "vuex";
 const memberStore = "memberStore";
 export default {
     name: "UserMyPageBookMark",
     data() {
-            return {
-                aptInfo: null,
-            }
-        },
+        return {
+            aptInfo: null,
+        }
+    },
     created() {
         this.aptInfo = this.apt;
     },
     computed: {
         ...mapState(memberStore, ["userInfo"]),
     },
-    props: {
-        apt: Object,
-    },
     methods: {
-        removeApt() {
-            // memberStore에 deleteApt 구현.
-            // this.deleteApt(this.apt);
-            alert("deleteAPT 만들어 !");
+        ...mapActions(memberStore, ["deleteBookmark"]),
+        removeBookmark(aptCode) {
+            var really = confirm("삭제하시겠습니까?");
+            if (!really) return;
+            var param = {
+                aptCode: aptCode,
+                userId: this.userInfo.userid,
+            };
+            this.deleteBookmark(param);
+        },
+    },
+    watch: {
+        userInfo: function (val) {
+            console.log(val + "제제발");
+            this.userInfo = val;
         },
     }
 }

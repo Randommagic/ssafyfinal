@@ -1,12 +1,14 @@
 package com.ssafy.vue.model.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.ssafy.vue.model.BookmarkDto;
 import com.ssafy.vue.model.MemberDto;
 import com.ssafy.vue.model.mapper.MemberMapper;
 
@@ -67,8 +69,23 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberMapper.class).removeUser(userid) == 1;
 	}
 
+	
 	@Override
-	public boolean newBookmark(String userId, String aptCode) throws Exception {
-		return sqlSession.getMapper(MemberMapper.class).newBookmark(userId, aptCode) == 1;
+	public List<BookmarkDto> getBookmarks(String userId) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).getBookmarkApt(userId);
 	}
+	
+	@Override
+	public List<BookmarkDto> newBookmark(String userId, String aptCode) throws Exception {
+		sqlSession.getMapper(MemberMapper.class).newBookmark(userId, aptCode);
+		return getBookmarks(userId);
+	}
+
+	@Override
+	public List<BookmarkDto> deleteBookmark(String userId, String aptCode) throws Exception {
+		sqlSession.getMapper(MemberMapper.class).deleteBookmark(userId, aptCode);
+		return getBookmarks(userId);
+	}
+
+
 }

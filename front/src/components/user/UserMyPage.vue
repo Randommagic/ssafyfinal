@@ -12,7 +12,7 @@
         <user-my-page-info></user-my-page-info>
       </b-col>
       <b-col cols="6">
-        <user-my-page-book-mark v-for="(apt, index) in userInfo.aptBookmark" :key="index" :apt="apt" />
+        <user-my-page-book-mark />
       </b-col>
     </b-row>
   </div>
@@ -38,4 +38,5 @@ export default {
 </script>
 
 <style>
+
 </style>

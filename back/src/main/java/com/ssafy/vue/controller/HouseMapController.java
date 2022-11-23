@@ -30,7 +30,7 @@ import com.ssafy.vue.model.service.HouseMapService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-//http://localhost:9999/vue/swagger-ui.html
+//http://localhost:9999/swagger-ui.html
 @RestController
 @RequestMapping("/map")
 @Api("Map 컨트롤러  API V1")

@@ -6,6 +6,7 @@ import {
   tokenRegeneration,
   logout,
   addNewBookmark,
+  delBookmark,
 } from "@/api/member";
 
 const memberStore = {
@@ -38,6 +39,10 @@ const memberStore = {
       state.isLogin = true;
       state.userInfo = userInfo;
     },
+    SET_USER_INFO_BOOKMARK: (state, bookmark) => {
+      state.isLogin = true;
+      state.userInfo.aptBookmark = bookmark;
+    }
   },
   actions: {
     async userConfirm({ commit }, user) {
@@ -149,18 +154,32 @@ const memberStore = {
       );
     },
 
-    async addBookmark({ test }, param) {
-      const params = {
-        aptCode: param.aptCode,
-        userId: param.userId,
-      };
-      console.log("hi", test);
+    async addBookmark({ commit }, params) {
+      console.log(params);
       await addNewBookmark(
         params,
         ({ data }) => {
           console.log(data);
-          if (data === "success") {
-            console.log("잘된듯?");
+          if (data !== "FAIL") {
+            commit("SET_USER_INFO_BOOKMARK", data);
+          } else {
+            console.log("엿된듯?");
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+
+    async deleteBookmark({ commit }, params) {
+      console.log(params);
+      await delBookmark(
+        params,
+        ({ data }) => {
+          console.log(data);
+          if (data !== "FAIL") {
+            commit("SET_USER_INFO_BOOKMARK", data);
           } else {
             console.log("엿된듯?");
           }
@@ -171,6 +190,11 @@ const memberStore = {
       );
     },
   },
+
+
+
+
+
 };
 
 export default memberStore;

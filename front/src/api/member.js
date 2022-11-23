@@ -33,12 +33,24 @@ async function updateUser(user, success, fail) {
 }
 
 async function addNewBookmark(params, success, fail) {
-  console.log(JSON.stringify(params));
   await api
-    .post(`/user/bookmark`, JSON.stringify(params))
+    .post(`/user/bookmark`, JSON.stringify(params), {
+      headers: { "Content-Type": `application/json` }
+    })
+    .then(success)
+    .catch(fail);
+}
+
+async function delBookmark(params, success, fail) {
+  await api
+    .delete(`/user/bookmark`, { headers: { "Content-Type": `application/json` }, data: JSON.stringify(params) })
     .then(success)
     .catch(fail);
 }
 
 
-export { login, findById, tokenRegeneration, logout, joinUser, removeUser, updateUser,addNewBookmark, };
+
+
+
+
+export { login, findById, tokenRegeneration, logout, joinUser, removeUser, updateUser, addNewBookmark, delBookmark };
