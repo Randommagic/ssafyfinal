@@ -1,5 +1,6 @@
 package com.ssafy.vue.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.ssafy.vue.model.DealInfoDto;
 import com.ssafy.vue.model.HouseInfoDto;
+import com.ssafy.vue.model.SearchResultDto;
 import com.ssafy.vue.model.SidoGugunCodeDto;
 import com.ssafy.vue.model.mapper.HouseMapMapper;
 
@@ -33,17 +35,42 @@ public class HouseMapServiceImpl implements HouseMapService {
 	}
 
 	@Override
-	public List<HouseInfoDto> getAptInDong(String dong, String minPriceRange, String maxPriceRange, String minDateRange, String maxDateRange) throws Exception {
+	public List<HouseInfoDto> getAptInDong(String dong, String minPriceRange, String maxPriceRange, String minDateRange,
+			String maxDateRange) throws Exception {
 		List<HouseInfoDto> list = sqlSession.getMapper(HouseMapMapper.class).getAptInDong(dong);
 		for (int i = 0; i < list.size(); i++) {
-			List<DealInfoDto> filteredDealList = sqlSession.getMapper(HouseMapMapper.class)
-					.getAptFilteredDeals(list.get(i).getAptCode(), minPriceRange, maxPriceRange, minDateRange, maxDateRange);
+			List<DealInfoDto> filteredDealList = sqlSession.getMapper(HouseMapMapper.class).getAptFilteredDeals(
+					list.get(i).getAptCode(), minPriceRange, maxPriceRange, minDateRange, maxDateRange);
 			List<DealInfoDto> dealList = sqlSession.getMapper(HouseMapMapper.class)
 					.getAptDeals(list.get(i).getAptCode());
 			list.get(i).setDeals(dealList);
 			list.get(i).setFilteredDeals(filteredDealList);
 		}
 		return list;
+	}
+
+	@Override
+	public List<HouseInfoDto> getOneApt(String aptCode, String minPriceRange, String maxPriceRange, String minDateRange,
+			String maxDateRange) throws Exception {
+		List<HouseInfoDto> list =  new ArrayList<HouseInfoDto>();
+		HouseInfoDto houseDto = sqlSession.getMapper(HouseMapMapper.class).getOneApt(aptCode);
+		houseDto.setDeals(sqlSession.getMapper(HouseMapMapper.class).getAptDeals(aptCode));
+		houseDto.setFilteredDeals(sqlSession.getMapper(HouseMapMapper.class).getAptFilteredDeals(aptCode, minPriceRange,
+				maxPriceRange, minDateRange, maxDateRange));
+		
+		list.add(houseDto);
+		
+		return list;
+	}
+
+	@Override
+	public SearchResultDto getSearchByKeyword(String keyword) throws Exception {
+
+		SearchResultDto result = new SearchResultDto();
+		result.setAptResult(sqlSession.getMapper(HouseMapMapper.class).searchByAptName(keyword));
+		result.setDongResult(sqlSession.getMapper(HouseMapMapper.class).searchByDongName(keyword));
+
+		return result;
 	}
 
 //	@Override

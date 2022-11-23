@@ -45,7 +45,15 @@
 	</select>
 	
 	
-
+	
+	<select id="getOneApt" parameterType="string" resultType="houseInfoDto">
+		select aptCode, aptName, buildyear, dongCode, dongName, jibun, lat, lng
+		from houseinfo 
+		where aptCode = #{aptCode}
+	</select>
+	
+	
+	
 	
 	<select id="getAptDeals" parameterType="string" resultType="DealInfoDto">
 		select no, dealAmount, dealYear, dealMonth, dealDay, area, floor 
@@ -61,6 +69,20 @@
 		AND CAST(replace(dealAmount, ',' , '') AS SIGNED) between #{minPriceRange} and #{maxPriceRange}
 		AND CAST(concat(dealYear,'-',dealMonth,'-',dealDay) AS datetime) between #{minDateRange} and #{maxDateRange}
 		order by no
+	</select>
+	
+	<select id="searchByDongName" parameterType="string" resultType="map">
+		SELECT dongCode, concat(sidoName," ",gugunName," ",dongName) address 
+		FROM dongcode
+		where dongName like concat('%',#{keyword},'%')
+	</select>
+	
+	<select id="searchByAptName" parameterType="string" resultType="map">
+		SELECT aptCode , aptName, dongCode, 
+			(SELECT concat(sidoName," ",gugunName," ",dongName) 
+			FROM dongcode where dongcode.dongCode = houseinfo.dongCode) address 		
+		FROM houseinfo
+		where aptName like concat('%',#{keyword},'%')
 	</select>
 	
 	

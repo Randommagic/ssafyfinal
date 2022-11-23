@@ -20,5 +20,19 @@ function houseList(params, success, fail) {
   api.get(`/map/apt`, { params: params }).then(success).catch(fail);
 }
 
-export { sidoList, gugunList, houseList, dongList };
-  
+function singleHouseList(params, success, fail) {
+  api.get(`/map/oneApt`, { params: params }).then(success).catch(fail);
+}
+
+function keywordSearchList(params, success, fail) {
+  api.get(`/map/search`, { params: params }).then(success).catch(fail);
+}
+
+export {
+  sidoList,
+  gugunList,
+  houseList,
+  singleHouseList,
+  dongList,
+  keywordSearchList,
+};

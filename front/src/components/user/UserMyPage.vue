@@ -42,6 +42,17 @@
               <b-col cols="4" align-self="start">{{ userInfo.joindate }}</b-col>
               <b-col cols="2"></b-col>
             </b-row>
+
+            <b-row>
+              <b-list-group>
+                <b-list-group-item v-for="(bookmark, index) in userInfo.aptBookmark" :key="index"> {{ bookmark.aptCode
+                }}
+                </b-list-group-item>
+
+              </b-list-group>
+
+            </b-row>
+
           </b-container>
           <hr class="my-4" />
 

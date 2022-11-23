@@ -33,6 +33,7 @@
 		set token = #{token, jdbcType=VARCHAR}
 		where userid = #{userid}
 	</update>
+	
 	<insert id="registUser" parameterType="memberDto">
 		insert
 		into ssafy_member(userid, userpwd, username, email)
@@ -44,5 +45,18 @@
 		from ssafy_member
 		where userid = #{userid}
 	</delete>
+	
+	
+	<select id="getBookmarkApt" parameterType="string" resultType="BookmarkDto">
+		select id,aptCode,bookmarkedTime
+		from bookmark
+		where userid = #{userid}
+	</select>
+	
+	<insert id="newBookmark" parameterType="string">
+		insert
+		into bookmark(userid, aptCode)
+		values(#{userid}, #{aptCode})
+	</insert>
 	
 </mapper>

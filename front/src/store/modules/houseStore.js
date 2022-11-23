@@ -1,4 +1,11 @@
-import { sidoList, gugunList, houseList, dongList } from "@/api/house.js";
+import {
+  sidoList,
+  gugunList,
+  houseList,
+  dongList,
+  keywordSearchList,
+  singleHouseList,
+} from "@/api/house.js";
 
 const houseStore = {
   namespaced: true,
@@ -9,6 +16,7 @@ const houseStore = {
     dong: null,
     houses: [],
     house: null,
+    searchList: [],
   },
   getters: {},
   mutations: {
@@ -28,7 +36,9 @@ const houseStore = {
       state.houses = [];
       state.house = null;
     },
-
+    CLEAR_KEYWORD_SEARCH_LIST(state) {
+      state.searchList = [];
+    },
     SET_SIDO_LIST(state, sidos) {
       sidos.forEach((sido) => {
         state.sidos.push({ value: sido.sidoCode, text: sido.sidoName });
@@ -55,6 +65,9 @@ const houseStore = {
     },
     SET_DETAIL_HOUSE_BYNUMBER(state, num) {
       state.house = state.houses[num];
+    },
+    SET_KEYWORD_SEARCH_LIST(state, list) {
+      state.searchList = list;
     },
   },
   actions: {
@@ -116,12 +129,50 @@ const houseStore = {
       );
     },
 
+    getSingleHouseList: ({ commit }, param) => {
+      commit("SET_DONG", param.dong);
+      commit("CLEAR_APT_LIST");
+      const params = {
+        aptCode: param.aptCode,
+        minPriceRange: param.minPriceRange,
+        maxPriceRange: param.maxPriceRange,
+        minDateRange: param.minDateRange,
+        maxDateRange: param.maxDateRange,
+      };
+      singleHouseList(
+        params,
+        ({ data }) => {
+          console.log(data);
+          commit("SET_HOUSE_LIST", data);
+          // commit("SET_DETAIL_HOUSE", data[0]);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+
     detailHouse: ({ commit }, house) => {
-      // 나중에 house.일련번호를 이용하여 API 호출
       commit("SET_DETAIL_HOUSE", house);
     },
     detailHouseByNumber: ({ commit }, num) => {
       commit("SET_DETAIL_HOUSE_BYNUMBER", num);
+    },
+
+    keywordSearch: ({ commit }, param) => {
+      const params = {
+        keyword: param,
+      };
+      keywordSearchList(
+        params,
+        ({ data }) => {
+          console.log(data);
+          commit("SET_KEYWORD_SEARCH_LIST", data);
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
     },
   },
 };

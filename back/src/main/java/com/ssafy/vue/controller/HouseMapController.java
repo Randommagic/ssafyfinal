@@ -23,13 +23,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.vue.model.DealInfoDto;
 import com.ssafy.vue.model.HouseInfoDto;
+import com.ssafy.vue.model.SearchResultDto;
 import com.ssafy.vue.model.SidoGugunCodeDto;
 import com.ssafy.vue.model.service.HouseMapService;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiParam;
-
+//http://localhost:9999/vue/swagger-ui.html
 @RestController
 @RequestMapping("/map")
 @Api("Map 컨트롤러  API V1")
@@ -107,7 +108,24 @@ public class HouseMapController {
 	public ResponseEntity<List<HouseInfoDto>> apt(@RequestParam("dong") String dong, String minPriceRange,
 			String maxPriceRange, String minDateRange, String maxDateRange) throws Exception {
 		return new ResponseEntity<List<HouseInfoDto>>(
-				haHouseMapService.getAptInDong(dong, minPriceRange, maxPriceRange, minDateRange, maxDateRange), HttpStatus.OK);
+				haHouseMapService.getAptInDong(dong, minPriceRange, maxPriceRange, minDateRange, maxDateRange),
+				HttpStatus.OK);
+	}
+
+	
+	@GetMapping("/oneApt")
+	public ResponseEntity<List<HouseInfoDto>> oneApt(@RequestParam("aptCode") String aptCode, String minPriceRange,
+			String maxPriceRange, String minDateRange, String maxDateRange) throws Exception {
+		System.out.println(aptCode);
+		return new ResponseEntity<List<HouseInfoDto>>(
+				haHouseMapService.getOneApt(aptCode, minPriceRange, maxPriceRange, minDateRange, maxDateRange),
+				HttpStatus.OK);
+	}
+	
+
+	@GetMapping("/search")
+	public ResponseEntity<SearchResultDto> search(@RequestParam("keyword") String keyword) throws Exception {
+		return new ResponseEntity<SearchResultDto>(haHouseMapService.getSearchByKeyword(keyword), HttpStatus.OK);
 	}
 
 //	@GetMapping("/apt/deals")
