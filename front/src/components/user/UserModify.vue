@@ -1,5 +1,5 @@
 <template>
-  <b-modal id="modify-form" hide-footer>
+  <b-modal id="modify-form" ref="modify-form" hide-footer>
     <template #modal-title> 회원정보수정 </template>
     <div class="d-block text-center">
       <b-form id="join_form">
@@ -55,7 +55,7 @@
     <div>
       <b-button-group>
         <b-button @click="updateCheck()">수정하기</b-button>
-        <b-button block @click="updateFormClose()">닫기</b-button>
+        <b-button block @click="updateFormClose">닫기</b-button>
       </b-button-group>
     </div>
   </b-modal>
@@ -115,7 +115,7 @@ export default {
       this.changeUser.userid = this.userInfo.userid;
       this.changeUser.username = this.userInfo.username;
       this.changeUser.email = this.userInfo.email;
-      // $bvModal.hide('modify-form');
+      this.$refs['modify-form'].hide();
     },
   },
 };
