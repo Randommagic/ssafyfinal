@@ -42,22 +42,26 @@
               <b-col cols="4" align-self="start">{{ userInfo.joindate }}</b-col>
               <b-col cols="2"></b-col>
             </b-row>
-
-            <b-row>
-              <b-list-group>
-                <b-list-group-item v-for="(bookmark, index) in userInfo.aptBookmark" :key="index"> {{ bookmark.aptCode
-                }}
-                </b-list-group-item>
-
-              </b-list-group>
-
-            </b-row>
-
           </b-container>
           <hr class="my-4" />
 
-          <b-button variant="primary" to="/user/" class="mr-1">정보수정</b-button>
-          <b-button variant="danger" @click="checkMsg()">회원탈퇴</b-button>
+          <div>
+            <!-- <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Open Modal</b-button> -->
+            <b-button variant="primary" id="show-btn" @click="$bvModal.show('modify-form')" class="mr-1">정보수정
+            </b-button>
+
+            <!-- 정보 수정 모달 폼 -->
+            <!-- <b-modal id="bv-modal-example" hide-footer>
+              <user-modify></user-modify>
+            </b-modal> -->
+            <!-- <b-modal id="bv-modal-example" hide-footer> -->
+            <user-modify></user-modify>
+            <!-- </b-modal> -->
+
+            <b-button variant="danger" @click="checkMsg()">회원탈퇴</b-button>
+          </div>
+
+
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -68,11 +72,15 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { removeUser } from "@/api/member.js";
+import UserModify from "@/components/user/UserModify";
+
 const memberStore = "memberStore";
 
 export default {
   name: "UserMyPage",
-  components: {},
+  components: {
+    UserModify,
+  },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
   },
@@ -85,14 +93,14 @@ export default {
     },
     deleteUser() {
       removeUser(
-        this.userInfo.userid,
+        this.user.userid,
         ({ data }) => {
           let msg = "회원 탈퇴 중 오류가 발생했습니다 !";
           if (data === "success") {
             msg = "회원 탈퇴가 완료되었습니다.";
           }
           alert(msg);
-          this.userLogout(this.userInfo.userid);
+          this.userLogout(this.user.userid);
           sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
           sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
           if (this.$route.path != "/") this.$router.push({ name: "main" });

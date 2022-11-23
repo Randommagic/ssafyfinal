@@ -1,9 +1,10 @@
 <template>
+  
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert show>
-          <h3>글목록</h3>
+        <b-alert show variant="">
+          <h3>자유게시판</h3>
         </b-alert>
       </b-col>
     </b-row>

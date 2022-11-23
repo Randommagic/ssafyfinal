@@ -1,46 +1,62 @@
-<!-- <template>
-    <b-container class="bv-example-row mt-3">
-        <b-row>
-            <b-col></b-col>
-            <b-col cols="8">
-                <b-card class="text-center mt-3" style="max-width: 40rem" align="left">
-                    <b-form class="text-left">
-                        <b-form-group label="아이디:" label-for="userid">
-                            <b-form-input id="userid" v-model="user.userid" required placeholder="아이디 입력...."
-                                ref="userid">
-                            </b-form-input>
-                        </b-form-group>
-                        <b-form-group label="비밀번호:" label-for="userpwd">
-                            <b-form-input type="password" id="userpwd" v-model="user.userpwd" required
-                                placeholder="비밀번호 입력...." ref="userpwd"></b-form-input>
-                        </b-form-group>
-                        <b-form-group label="이메일:" label-for="email">
-                            <b-form-input type="email" id="email" v-model="user.email" required
-                                placeholder="example@ssafy.com" ref="email"></b-form-input>
-                        </b-form-group>
-                        <b-form-group label="이름:" label-for="username">
-                            <b-form-input id="username" v-model="user.username" required placeholder="이름"
-                                ref="username">
-                            </b-form-input>
-                        </b-form-group>
-                        <b-button type="button" variant="success" class="m-1" @click="checkValue(user)">가입하기</b-button>
-                    </b-form>
-                </b-card>
-            </b-col>
-            <b-col></b-col>
-        </b-row>
-    </b-container>
+<template>
+    <b-modal id="modify-form" hide-footer>
+        <template #modal-title>
+            회원정보수정
+        </template>
+        <div class="d-block text-center">
+            <b-form id="join_form">
+                <b-form-group label-cols="4" label-cols-lg="2" label-size="sm" label="아이디" label-for="userid">
+                    <b-form-input type="text" id="userid" v-model="changeUser.userid" required readonly></b-form-input>
+                </b-form-group>
+                <b-form-group label-cols="4" label-cols-lg="2" label-size="sm" label="이름" label-for="username">
+                    <b-form-input type="text" id="username" v-model="changeUser.username" required placeholder="이름 입력"
+                        ref="username"></b-form-input>
+                </b-form-group>
+                <b-form-group label-cols="4" label-cols-lg="2" label-size="sm" label="이메일" label-for="email">
+                    <b-form-input type="email" id="email" v-model="changeUser.email" required
+                        placeholder="example@ssafy.com" ref="email"></b-form-input>
+                </b-form-group>
+            </b-form>
+        </div>
+        <div>
+        <b-button-group>
+            <b-button @click="checkValue(changeUser)">Sign Up</b-button>
+            <b-button block @click="$bvModal.hide('modify-form')">Close Me</b-button>
+        </b-button-group>
+    </div>
+    </b-modal>
 </template>
 
+
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState, mapGetters } from "vuex";
 const memberStore = "memberStore";
 
 export default {
-    name: "UserModify"
+    name: "UserModify",
+    data() {
+        return {
+            changeUser: {
+                userid: "",
+                username: "",
+                email: "",
+            },
+        }
+    },
+    computed: {
+        ...mapState(memberStore, ["userInfo"]),
+        ...mapGetters(memberStore, {
+            user: "checkUserInfo",
+        }),
+    },
+    created() {
+        this.changeUser.userid = this.userInfo.userid;
+        this.changeUser.username = this.userInfo.username;
+        this.changeUser.email = this.userInfo.email;
+    }
 }
 </script>
 
 <style>
 
-</style> -->
+</style>

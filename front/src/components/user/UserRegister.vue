@@ -1,5 +1,5 @@
 <template>
-  <b-container class="bv-example-row mt-3">
+  <!-- <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col></b-col>
       <b-col cols="8">
@@ -27,7 +27,31 @@
       </b-col>
       <b-col></b-col>
     </b-row>
-  </b-container>
+  </b-container> -->
+  <div id="join_form" class="wrap" style="margin-top: 130px;">
+    <div>
+      <h1>회원가입</h1>
+      <b-form id="join_form">
+        <b-form-group>
+          <b-form-input id="userid" v-model="user.userid" required placeholder="아이디 입력" ref="userid">
+          </b-form-input>
+        </b-form-group>
+        <b-form-group>
+          <b-form-input type="password" id="userpwd" v-model="user.userpwd" required placeholder="비밀번호 입력" ref="userpwd"></b-form-input>
+        </b-form-group>
+        <b-form-group>
+          <b-form-input type="text" id="username" v-model="user.username" required placeholder="이름 입력" ref="username"></b-form-input>
+        </b-form-group>
+        <b-form-group>
+          <b-form-input type="email" id="email" v-model="user.email" required placeholder="example@ssafy.com" ref="email"></b-form-input>
+        </b-form-group>
+        <p>
+          <!-- <input type="submit" value="Login" class="form_btn"> -->
+          <b-button class="form_btn" @click="checkValue(user)">Sign Up</b-button>
+        </p>
+      </b-form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -85,5 +109,91 @@ export default {
 </script>
 
 <style>
+.wrap {
+  width: 500px;
+  height: 650px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 2px 2px 2px 2px #999;
+}
 
+.wrap>div {
+  width: 100%;
+  margin: 0 100px;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.wrap .form input:not(input[type='submit'], input[type='checkbox']) {
+  border: 1px solid #d9d9d9;
+  width: 400px;
+  height: 50px;
+  margin: 5px;
+  padding-left: 10px;
+  border-radius: 5px;
+  box-sizing: border-box;
+  font-size: 18px;
+}
+
+#login_form .forgetpw {
+  text-align: left;
+  font-size: 14px;
+  margin: 0 0 10px 10px;
+  cursor: pointer;
+}
+
+.wrap .form_btn {
+  width: 400px;
+  height: 50px;
+  margin: 10px;
+  border-radius: 5px;
+  border: 0;
+  background: linear-gradient(to left, #f857a6, #ff5858);
+  color: #fff;
+  font-weight: bold;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+/* #login_form .forgetpw a,
+#login_form .regist_btn a {
+    color: red;
+}
+
+#login-form {
+    position: relative;
+    z-index: 2;
+}
+
+login-form h1 {
+    font-size: 32px;
+    color: #fff;
+    text-align: center;
+} */
+
+.int-area {
+  width: 400px;
+}
+
+.int-area input {
+  width: 100%;
+  padding: 20px 10px 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid #999;
+  font-size: 18px;
+  color: #999;
+  outline: none;
+}
+
+#login_form .forgetpw a,
+#login_wrap .regist_btn a {
+  color: red;
+}
 </style>
