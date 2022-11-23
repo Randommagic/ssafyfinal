@@ -55,8 +55,8 @@
 	
 	<insert id="newBookmark" parameterType="string">
 		insert
-		into bookmark(userid, aptCode)
-		values(#{userid}, #{aptCode})
+		into bookmark(userId, aptCode)
+		values(#{userId}, #{aptCode})
 	</insert>
 	
 </mapper>

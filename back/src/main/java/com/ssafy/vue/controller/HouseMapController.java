@@ -116,7 +116,6 @@ public class HouseMapController {
 	@GetMapping("/oneApt")
 	public ResponseEntity<List<HouseInfoDto>> oneApt(@RequestParam("aptCode") String aptCode, String minPriceRange,
 			String maxPriceRange, String minDateRange, String maxDateRange) throws Exception {
-		System.out.println(aptCode);
 		return new ResponseEntity<List<HouseInfoDto>>(
 				haHouseMapService.getOneApt(aptCode, minPriceRange, maxPriceRange, minDateRange, maxDateRange),
 				HttpStatus.OK);

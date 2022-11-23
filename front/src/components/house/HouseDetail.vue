@@ -7,7 +7,7 @@
           v-if="this.userInfo"
           pill
           variant="info"
-          @click="bookMark(house.aptCode)"
+          @click="bookmark(house.aptCode)"
         >
           찜하기</b-button
         >
@@ -61,7 +61,7 @@
 </template>
 
 <script>
-import { mapState } from "vuex";
+import { mapActions, mapState } from "vuex";
 
 const houseStore = "houseStore";
 const memberStore = "memberStore";
@@ -73,6 +73,7 @@ export default {
     ...mapState(memberStore, ["userInfo"]),
   },
   methods: {
+    ...mapActions(memberStore, ["addBookmark"]),
     bookmark(aptCode) {
       for (var i = 0; i < this.userInfo.aptBookmark.length; i++) {
         if (aptCode === this.userInfo.aptBookmark[i].aptCode) {
@@ -80,6 +81,12 @@ export default {
           break;
         }
       }
+      var param = {
+        aptCode: aptCode,
+        userId: this.userInfo.userid,
+      };
+
+      this.addBookmark(param);
     },
   },
   mounted() {},

@@ -1,6 +1,12 @@
 import jwtDecode from "jwt-decode";
 import router from "@/router";
-import { login, findById, tokenRegeneration, logout } from "@/api/member";
+import {
+  login,
+  findById,
+  tokenRegeneration,
+  logout,
+  addNewBookmark,
+} from "@/api/member";
 
 const memberStore = {
   namespaced: true,
@@ -72,14 +78,20 @@ const memberStore = {
           }
         },
         async (error) => {
-          console.log("getUserInfo() error code [토큰 만료되어 사용 불가능.] ::: ", error.response.status);
+          console.log(
+            "getUserInfo() error code [토큰 만료되어 사용 불가능.] ::: ",
+            error.response.status
+          );
           commit("SET_IS_VALID_TOKEN", false);
           await dispatch("tokenRegeneration");
         }
       );
     },
     async tokenRegeneration({ commit, state }) {
-      console.log("토큰 재발급 >> 기존 토큰 정보 : {}", sessionStorage.getItem("access-token"));
+      console.log(
+        "토큰 재발급 >> 기존 토큰 정보 : {}",
+        sessionStorage.getItem("access-token")
+      );
       await tokenRegeneration(
         JSON.stringify(state.userInfo),
         ({ data }) => {
@@ -129,6 +141,28 @@ const memberStore = {
             commit("SET_IS_VALID_TOKEN", false);
           } else {
             console.log("유저 정보 없음!!!!");
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      );
+    },
+
+    async addBookmark({ test }, param) {
+      const params = {
+        aptCode: param.aptCode,
+        userId: param.userId,
+      };
+      console.log("hi", test);
+      await addNewBookmark(
+        params,
+        ({ data }) => {
+          console.log(data);
+          if (data === "success") {
+            console.log("잘된듯?");
+          } else {
+            console.log("엿된듯?");
           }
         },
         (error) => {

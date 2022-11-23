@@ -167,15 +167,14 @@ public class MemberController {
 	
 	@ApiOperation(value = "찜하기", notes = "아파트를 찜 목록에 추가한다.", response = Map.class)
 	@PostMapping("/bookmark")
-	public ResponseEntity<?> addBookmark(@RequestParam String aptCode, String userId) throws Exception {
+	public ResponseEntity<?> addBookmark(@RequestBody Map<String,String> map) throws Exception {
+		
+		String aptCode = map.get("aptCode");
+		String userId = map.get("userId");
 		if (memberService.newBookmark(userId, aptCode)) {
 			return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
 		}
 		return new ResponseEntity<String>(FAIL, HttpStatus.NO_CONTENT);
 	}
 
-	
-	
-	
-	
 }
