@@ -72,6 +72,7 @@ export default {
     },
 
     displayMarker() {
+      console.log(this.infos);
       this.removeMarker();
       for (let i = 0; i < this.infos.length; i++) {
         if (this.infos[i].filteredDeals.length == 0) continue;
