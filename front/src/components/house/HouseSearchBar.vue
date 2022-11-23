@@ -102,7 +102,7 @@
               <vue-slider
                 v-model="filter.priceRange"
                 :min="0"
-                :max="60"
+                :max="70"
                 @change="applyFilter"
                 :lazy="true"
               >
@@ -159,9 +159,9 @@ export default {
   data() {
     return {
       filter: {
-        priceRange: [0, 60],
-        minDate: "2019-01-01",
-        maxDate: "2019-12-31",
+        priceRange: [],
+        minDate: "",
+        maxDate: "",
       },
       queryType: "주소분류",
       searchKeyword: "",
@@ -188,6 +188,7 @@ export default {
   created() {
     // this.$store.dispatch("getSido");
     // this.sidoList();
+    this.resetFilter();
     this.CLEAR_SIDO_LIST();
     this.CLEAR_GUGUN_LIST();
     this.CLEAR_DONG_LIST();
@@ -267,9 +268,9 @@ export default {
     },
 
     resetFilter() {
-      this.filter.priceRange = [0, 60];
-      this.filter.minDate = "2019-01-01";
-      this.filter.maxDate = "2019-12-31";
+      this.filter.priceRange = [0, 70];
+      this.filter.minDate = "2015-01-01";
+      this.filter.maxDate = "2022-12-31";
     },
 
     resetAndFilter() {

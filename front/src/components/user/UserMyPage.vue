@@ -47,7 +47,12 @@
 
           <div>
             <!-- <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Open Modal</b-button> -->
-            <b-button variant="primary" id="show-btn" @click="$bvModal.show('modify-form')" class="mr-1">정보수정
+            <b-button
+              variant="primary"
+              id="show-btn"
+              @click="$bvModal.show('modify-form')"
+              class="mr-1"
+              >정보수정
             </b-button>
 
             <!-- 정보 수정 모달 폼 -->
@@ -60,8 +65,6 @@
 
             <b-button variant="danger" @click="checkMsg()">회원탈퇴</b-button>
           </div>
-
-
         </b-jumbotron>
       </b-col>
       <b-col></b-col>
@@ -93,14 +96,14 @@ export default {
     },
     deleteUser() {
       removeUser(
-        this.user.userid,
+        this.userInfo.userid,
         ({ data }) => {
           let msg = "회원 탈퇴 중 오류가 발생했습니다 !";
           if (data === "success") {
             msg = "회원 탈퇴가 완료되었습니다.";
           }
           alert(msg);
-          this.userLogout(this.user.userid);
+          this.userLogout(this.userInfo.userid);
           sessionStorage.removeItem("access-token"); //저장된 토큰 없애기
           sessionStorage.removeItem("refresh-token"); //저장된 토큰 없애기
           if (this.$route.path != "/") this.$router.push({ name: "main" });
@@ -110,10 +113,8 @@ export default {
         }
       );
     },
-  }
+  },
 };
 </script>
 
-<style>
-
-</style>
+<style></style>

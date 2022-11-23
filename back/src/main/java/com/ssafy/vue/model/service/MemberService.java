@@ -11,5 +11,5 @@ public interface MemberService {
 	public void deleRefreshToken(String userid) throws Exception;
 	public boolean joinUser(MemberDto memberDto) throws Exception;
 	public boolean deleteUser(String userid) throws Exception;
-	public void newBookmark(String userid, String aptCode) throws Exception;
+	public boolean newBookmark(String userId, String aptCode) throws Exception;
 }

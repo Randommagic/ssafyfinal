@@ -28,5 +28,5 @@ public interface MemberMapper {
 
 	public List<BookmarkDto> getBookmarkApt(String userid) throws SQLException;
 
-	public void newBookmark(String userid, String aptCode) throws SQLException;
+	public int newBookmark(String userid, String aptCode) throws SQLException;
 }

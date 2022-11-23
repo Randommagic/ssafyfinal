@@ -68,7 +68,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void newBookmark(String userid, String aptCode) throws Exception {
-		sqlSession.getMapper(MemberMapper.class).newBookmark(userid, aptCode);
+	public boolean newBookmark(String userId, String aptCode) throws Exception {
+		return sqlSession.getMapper(MemberMapper.class).newBookmark(userId, aptCode) == 1;
 	}
 }
