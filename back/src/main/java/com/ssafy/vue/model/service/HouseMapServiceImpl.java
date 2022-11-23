@@ -1,5 +1,6 @@
 package com.ssafy.vue.model.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -45,6 +46,20 @@ public class HouseMapServiceImpl implements HouseMapService {
 			list.get(i).setDeals(dealList);
 			list.get(i).setFilteredDeals(filteredDealList);
 		}
+		return list;
+	}
+
+	@Override
+	public List<HouseInfoDto> getOneApt(String aptCode, String minPriceRange, String maxPriceRange, String minDateRange,
+			String maxDateRange) throws Exception {
+		List<HouseInfoDto> list =  new ArrayList<HouseInfoDto>();
+		HouseInfoDto houseDto = sqlSession.getMapper(HouseMapMapper.class).getOneApt(aptCode);
+		houseDto.setDeals(sqlSession.getMapper(HouseMapMapper.class).getAptDeals(aptCode));
+		houseDto.setFilteredDeals(sqlSession.getMapper(HouseMapMapper.class).getAptFilteredDeals(aptCode, minPriceRange,
+				maxPriceRange, minDateRange, maxDateRange));
+		
+		list.add(houseDto);
+		
 		return list;
 	}
 

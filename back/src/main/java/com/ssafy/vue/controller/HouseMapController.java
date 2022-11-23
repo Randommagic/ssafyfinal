@@ -112,6 +112,17 @@ public class HouseMapController {
 				HttpStatus.OK);
 	}
 
+	
+	@GetMapping("/oneApt")
+	public ResponseEntity<List<HouseInfoDto>> oneApt(@RequestParam("aptCode") String aptCode, String minPriceRange,
+			String maxPriceRange, String minDateRange, String maxDateRange) throws Exception {
+		System.out.println(aptCode);
+		return new ResponseEntity<List<HouseInfoDto>>(
+				haHouseMapService.getOneApt(aptCode, minPriceRange, maxPriceRange, minDateRange, maxDateRange),
+				HttpStatus.OK);
+	}
+	
+
 	@GetMapping("/search")
 	public ResponseEntity<SearchResultDto> search(@RequestParam("keyword") String keyword) throws Exception {
 		return new ResponseEntity<SearchResultDto>(haHouseMapService.getSearchByKeyword(keyword), HttpStatus.OK);

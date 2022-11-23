@@ -44,6 +44,17 @@
 		order by aptName
 	</select>
 	
+	
+	
+	<select id="getOneApt" parameterType="string" resultType="houseInfoDto">
+		select aptCode, aptName, buildyear, dongCode, dongName, jibun, lat, lng
+		from houseinfo 
+		where aptCode = #{aptCode}
+	</select>
+	
+	
+	
+	
 	<select id="getAptDeals" parameterType="string" resultType="DealInfoDto">
 		select no, dealAmount, dealYear, dealMonth, dealDay, area, floor 
 		from housedeal
@@ -67,7 +78,7 @@
 	</select>
 	
 	<select id="searchByAptName" parameterType="string" resultType="map">
-		SELECT aptCode , aptName, 
+		SELECT aptCode , aptName, dongCode, 
 			(SELECT concat(sidoName," ",gugunName," ",dongName) 
 			FROM dongcode where dongcode.dongCode = houseinfo.dongCode) address 		
 		FROM houseinfo

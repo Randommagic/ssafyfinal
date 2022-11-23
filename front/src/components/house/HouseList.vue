@@ -1,10 +1,8 @@
 <template>
   <div>
     <div id="map"></div>
-    <HouseSearchBar
-      :filter="filter"
-      @getHouseList="getHouseList"
-    ></HouseSearchBar>
+    <DIV></DIV>
+    <HouseSearchBar></HouseSearchBar>
   </div>
 </template>
 
@@ -21,13 +19,11 @@ export default {
   data() {
     return {
       filter: {},
-
       map: null,
       latitude: 37.501273,
       longitude: 127.039675,
       infos: [],
       markers: [],
-      houseNum: null,
     };
   },
   mounted() {
@@ -71,7 +67,6 @@ export default {
         }
         lat /= this.infos.length;
         lng /= this.infos.length;
-        console.log(lat, lng);
         this.map.setCenter(new kakao.maps.LatLng(lat, lng));
       }
     },
