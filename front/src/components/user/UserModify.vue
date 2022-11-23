@@ -19,16 +19,17 @@
             </b-form>
         </div>
         <div>
-        <b-button-group>
-            <b-button @click="checkValue(changeUser)">Sign Up</b-button>
-            <b-button block @click="$bvModal.hide('modify-form')">Close Me</b-button>
-        </b-button-group>
-    </div>
+            <b-button-group>
+                <b-button @click="updateCheck()">수정하기</b-button>
+                <b-button block @click="updateFormClose()">닫기</b-button>
+            </b-button-group>
+        </div>
     </b-modal>
 </template>
 
 
 <script>
+import { updateUser } from "@/api/member";
 import { mapState, mapGetters } from "vuex";
 const memberStore = "memberStore";
 
@@ -53,6 +54,36 @@ export default {
         this.changeUser.userid = this.userInfo.userid;
         this.changeUser.username = this.userInfo.username;
         this.changeUser.email = this.userInfo.email;
+    },
+    methods: {
+        updateCheck() {
+            let check = confirm("정말 수정하시겠습니까?");
+            if (!check) return;
+
+            this.modifyUser();
+        },
+        modifyUser() {
+            updateUser(
+                this.changeUser,
+                ({ data }) => {
+                    let msg = "회원 수정에 실패하였습니다!";
+                    if (data === "success") {
+                        msg = "회원 수정이 완료되었습니다.";
+                    }
+                    alert(msg);
+                    location.reload();
+                },
+                (error) => {
+                    console.log(error);
+                }
+            );
+        },
+        updateFormClose() {
+            this.changeUser.userid = this.userInfo.userid;
+            this.changeUser.username = this.userInfo.username;
+            this.changeUser.email = this.userInfo.email;
+            $bvModal.hide('modify-form');
+        }
     }
 }
 </script>

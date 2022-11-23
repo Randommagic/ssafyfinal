@@ -10,62 +10,7 @@
     <b-row>
       <b-col></b-col>
       <b-col cols="8">
-        <b-jumbotron>
-          <template #header>My Page</template>
-
-          <template #lead> 내 정보 확인페이지입니다. </template>
-
-          <hr class="my-4" />
-
-          <b-container class="mt-4">
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">아이디</b-col>
-              <b-col cols="4" align-self="start">{{ userInfo.userid }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">이름</b-col>
-              <b-col cols="4" align-self="start">{{ userInfo.username }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">이메일</b-col>
-              <b-col cols="4" align-self="start">{{ userInfo.email }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-            <b-row>
-              <b-col cols="2"></b-col>
-              <b-col cols="2" align-self="end">가입일</b-col>
-              <b-col cols="4" align-self="start">{{ userInfo.joindate }}</b-col>
-              <b-col cols="2"></b-col>
-            </b-row>
-          </b-container>
-          <hr class="my-4" />
-
-          <div>
-            <!-- <b-button id="show-btn" @click="$bvModal.show('bv-modal-example')">Open Modal</b-button> -->
-            <b-button
-              variant="primary"
-              id="show-btn"
-              @click="$bvModal.show('modify-form')"
-              class="mr-1"
-              >정보수정
-            </b-button>
-
-            <!-- 정보 수정 모달 폼 -->
-            <!-- <b-modal id="bv-modal-example" hide-footer>
-              <user-modify></user-modify>
-            </b-modal> -->
-            <!-- <b-modal id="bv-modal-example" hide-footer> -->
-            <user-modify></user-modify>
-            <!-- </b-modal> -->
-
-            <b-button variant="danger" @click="checkMsg()">회원탈퇴</b-button>
-          </div>
-        </b-jumbotron>
+        <user-my-page-info></user-my-page-info>
       </b-col>
       <b-col></b-col>
     </b-row>
@@ -75,14 +20,14 @@
 <script>
 import { mapState, mapActions } from "vuex";
 import { removeUser } from "@/api/member.js";
-import UserModify from "@/components/user/UserModify";
+import UserMyPageInfo from "@/components/user/UserMyPageInfo";
 
 const memberStore = "memberStore";
 
 export default {
   name: "UserMyPage",
   components: {
-    UserModify,
+    UserMyPageInfo,
   },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
