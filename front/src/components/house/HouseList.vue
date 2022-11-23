@@ -72,7 +72,7 @@ export default {
     },
 
     displayMarker() {
-      console.log(this.infos);
+      console.log(this.infos + "제발..");
       this.removeMarker();
       for (let i = 0; i < this.infos.length; i++) {
         if (this.infos[i].filteredDeals.length == 0) continue;
@@ -131,6 +131,7 @@ export default {
   },
   watch: {
     houses: function (val) {
+      console.log(val + "제제발");
       this.infos = val;
       this.displayMarker();
     },
