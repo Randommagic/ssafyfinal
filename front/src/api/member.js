@@ -32,4 +32,13 @@ async function updateUser(user, success, fail) {
   await api.put(`/user`, user).then(success).catch(fail);
 }
 
-export { login, findById, tokenRegeneration, logout, joinUser, removeUser, updateUser };
+async function addNewBookmark(params, success, fail) {
+  console.log(JSON.stringify(params));
+  await api
+    .post(`/user/bookmark`, JSON.stringify(params))
+    .then(success)
+    .catch(fail);
+}
+
+
+export { login, findById, tokenRegeneration, logout, joinUser, removeUser, updateUser,addNewBookmark, };
