@@ -9,10 +9,13 @@
             </b-button-group>
     </b-container> -->
     <div>
+        <h3> 북마크 리스트 </h3>
         <b-input-group v-for="(apt, index) in userInfo.aptBookmark" :key="index" prepend="아파트 명" class="mt-3">
             <b-form-input v-model="apt.aptCode" readonly></b-form-input>
             <b-input-group-append>
-                <b-button variant="primary">지도</b-button>
+                <router-link :to="{ name: 'house', query: { aptCode: apt.aptCode } }">
+                    <b-button variant="primary">지도</b-button>
+                </router-link>
                 <b-button variant="danger" @click="removeBookmark(apt.aptCode)">삭제</b-button>
             </b-input-group-append>
         </b-input-group>
@@ -49,7 +52,6 @@ export default {
     },
     watch: {
         userInfo: function (val) {
-            console.log(val + "제제발");
             this.userInfo = val;
         },
     }

@@ -1,7 +1,6 @@
 <template>
   <div>
     <div id="map"></div>
-    <DIV></DIV>
     <HouseSearchBar></HouseSearchBar>
   </div>
 </template>
@@ -16,6 +15,7 @@ export default {
   components: {
     HouseSearchBar,
   },
+
   data() {
     return {
       filter: {},
@@ -26,6 +26,7 @@ export default {
       markers: [],
     };
   },
+
   mounted() {
     if (window.kakao && window.kakao.maps) {
       this.initMap();
@@ -72,7 +73,6 @@ export default {
     },
 
     displayMarker() {
-      console.log(this.infos + "제발..");
       this.removeMarker();
       for (let i = 0; i < this.infos.length; i++) {
         if (this.infos[i].filteredDeals.length == 0) continue;
@@ -131,7 +131,6 @@ export default {
   },
   watch: {
     houses: function (val) {
-      console.log(val + "제제발");
       this.infos = val;
       this.displayMarker();
     },
