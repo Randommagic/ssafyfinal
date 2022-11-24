@@ -2,7 +2,7 @@
   <b-container class="bv-example-row mt-3">
     <b-row>
       <b-col>
-        <b-alert show><h3>글보기</h3></b-alert>
+        {{article.subject}}
       </b-col>
     </b-row>
     <b-row class="mb-1">
@@ -29,13 +29,18 @@
         </b-card>
       </b-col>
     </b-row>
+    <b-row>
+      <comment-list :comments="comments"></comment-list>
+    </b-row>
   </b-container>
 </template>
 
 <script>
-// import moment from "moment";
+import moment from "moment";
 import { getArticle } from "@/api/board";
+import { listComment } from "@/api/comment";
 import { mapState } from "vuex";
+import CommentList from "@/components/comment/CommentList";
 
 const memberStore = "memberStore";
 
@@ -44,7 +49,11 @@ export default {
   data() {
     return {
       article: {},
+      comments: [],
     };
+  },
+  components: {
+    CommentList,
   },
   computed: {
     ...mapState(memberStore, ["userInfo"]),
@@ -64,6 +73,19 @@ export default {
         console.log(error);
       }
     );
+
+    let param2 = this.$route.params.articleno;
+        listComment(
+            param2,
+            ({ data }) => {
+                console.log("data>>",data);
+                this.comments = data;
+                console.log("test >> ", this.comments);
+            },
+            (error) => {
+                console.log(error);
+            }
+        );
   },
   methods: {
     moveModifyArticle() {
@@ -71,7 +93,7 @@ export default {
         name: "boardmodify",
         params: { articleno: this.article.articleno },
       });
-      //   this.$router.push({ path: `/board/modify/${this.article.articleno}` });
+        this.$router.push({ path: `/board/modify/${this.article.articleno}` });
     },
     deleteArticle() {
       if (confirm("정말로 삭제?")) {
@@ -85,11 +107,11 @@ export default {
       this.$router.push({ name: "boardlist" });
     },
   },
-  // filters: {
-  //   dateFormat(regtime) {
-  //     return moment(new Date(regtime)).format("YY.MM.DD hh:mm:ss");
-  //   },
-  // },
+  filters: {
+    dateFormat(regtime) {
+      return moment(new Date(regtime)).format("YY.MM.DD hh:mm:ss");
+    },
+  },
 };
 </script>
 

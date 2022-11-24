@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-3 mx-3 text-center">
+  <div class="map">
     <house-list />
     <house-detail />
   </div>
@@ -24,5 +24,10 @@ export default {
     rgba(255, 255, 255, 0) 70%,
     rgba(231, 149, 27, 0.3) 30%
   );
+}
+
+.map {
+  width: 100vw;
+  height: 100vh;
 }
 </style>

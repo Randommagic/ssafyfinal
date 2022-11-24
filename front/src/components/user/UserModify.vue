@@ -96,9 +96,11 @@ export default {
       this.modifyUser();
     },
     modifyUser() {
+      console.log(this.changeUser);
       updateUser(
         this.changeUser,
         ({ data }) => {
+          console.log(data);
           let msg = "회원 수정에 실패하였습니다!";
           if (data === "success") {
             msg = "회원 수정이 완료되었습니다.";

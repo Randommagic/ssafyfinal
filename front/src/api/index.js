@@ -3,8 +3,8 @@ import axios from "axios";
 // local vue api axios instance
 function apiInstance() {
   const instance = axios.create({
-    // baseURL: "http://localhost:9999/",
-    baseURL: "http://70.12.50.143:9999/",
+    baseURL: "http://localhost:9999/vue",
+    // baseURL: "http://70.12.50.143:9999/",
     // baseURL: process.env.VUE_APP_API_BASE_URL,
     headers: {
       "Content-Type": "application/json;charset=utf-8",
@@ -28,7 +28,7 @@ function houseInstance() {
 function newsInstance() {
   const instance = axios.create({
     // baseURL: "https://openapi.naver.com/v1/search/news?",
-    baseURL: "/v1/search/news?",
+    baseURL: "/v1/search/news",
     headers: {
       "Content-Type": "application/json;charset=utf-8",
       "X-Naver-Client-Id": process.env.VUE_APP_NAVER_CLIENT_ID,
