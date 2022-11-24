@@ -63,7 +63,8 @@ public class CommentController {
     @ApiOperation(value = "댓글", notes = "수정할 댓글 정보를 입력한다. 그리고 DB수정 성공여부에 따라 'success' 또는 'fail' 문자열을 반환한다.", response = String.class)
     @PutMapping
     public ResponseEntity<String> modifyComment(@RequestBody @ApiParam(value = "수정할 글정보.", required = true) CommentDto commentDto) throws Exception {
-        if (commentService.modifyComment(commentDto)) {
+        System.out.println(commentDto.toString());
+    	if (commentService.modifyComment(commentDto)) {
             return new ResponseEntity<String>(SUCCESS, HttpStatus.OK);
         }
         return new ResponseEntity<String>(FAIL, HttpStatus.OK);

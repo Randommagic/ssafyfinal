@@ -28,26 +28,55 @@
       <b-col></b-col>
     </b-row>
   </b-container> -->
-  <div id="join_form" class="wrap" style="margin-top: 130px;">
+  <div id="join_form" class="wrap" style="margin-top: 130px">
     <div>
       <h1>회원가입</h1>
       <b-form id="join_form">
         <b-form-group>
-          <b-form-input id="userid" v-model="user.userid" required placeholder="아이디 입력" ref="userid">
+          <b-form-input
+            id="userid"
+            v-model="user.userid"
+            required
+            placeholder="아이디 입력"
+            ref="userid"
+          >
           </b-form-input>
         </b-form-group>
         <b-form-group>
-          <b-form-input type="password" id="userpwd" v-model="user.userpwd" required placeholder="비밀번호 입력" ref="userpwd"></b-form-input>
+          <b-form-input
+            type="password"
+            id="userpwd"
+            v-model="user.userpwd"
+            required
+            placeholder="비밀번호 입력"
+            ref="userpwd"
+          ></b-form-input>
         </b-form-group>
         <b-form-group>
-          <b-form-input type="text" id="username" v-model="user.username" required placeholder="이름 입력" ref="username"></b-form-input>
+          <b-form-input
+            type="text"
+            id="username"
+            v-model="user.username"
+            required
+            placeholder="이름 입력"
+            ref="username"
+          ></b-form-input>
         </b-form-group>
         <b-form-group>
-          <b-form-input type="email" id="email" v-model="user.email" required placeholder="example@ssafy.com" ref="email"></b-form-input>
+          <b-form-input
+            type="email"
+            id="email"
+            v-model="user.email"
+            required
+            placeholder="example@ssafy.com"
+            ref="email"
+          ></b-form-input>
         </b-form-group>
         <p>
           <!-- <input type="submit" value="Login" class="form_btn"> -->
-          <b-button class="form_btn" @click="checkValue(user)">Sign Up</b-button>
+          <b-button class="form_btn" @click="checkValue(user)"
+            >회원가입</b-button
+          >
         </p>
       </b-form>
     </div>
@@ -97,7 +126,7 @@ export default {
             msg = "회원 등록이 완료되었습니다.";
           }
           alert(msg);
-          this.$router.push('/user/login');
+          this.$router.push("/user/login");
         },
         (error) => {
           console.log(error);
@@ -121,7 +150,7 @@ export default {
   box-shadow: 2px 2px 2px 2px #999;
 }
 
-.wrap>div {
+.wrap > div {
   width: 100%;
   margin: 0 100px;
 }
@@ -130,7 +159,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.wrap .form input:not(input[type='submit'], input[type='checkbox']) {
+.wrap .form input:not(input[type="submit"], input[type="checkbox"]) {
   border: 1px solid #d9d9d9;
   width: 400px;
   height: 50px;

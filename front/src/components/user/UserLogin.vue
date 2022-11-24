@@ -1,24 +1,37 @@
 <template>
-  <div id="login_form" class="wrap" style="margin-top: 130px;">
+  <div id="login_form" class="wrap" style="margin-top: 130px">
     <div>
       <h1>로그인</h1>
       <b-form id="login_form">
         <b-form-group>
-          <b-form-input id="userid" v-model="user.userid" required placeholder="아이디 입력...." @keyup.enter="confirm">
+          <b-form-input
+            id="userid"
+            v-model="user.userid"
+            required
+            placeholder="아이디 입력...."
+            @keyup.enter="confirm"
+          >
           </b-form-input>
         </b-form-group>
         <b-form-group>
-          <b-form-input type="password" id="userpwd" v-model="user.userpwd" required placeholder="비밀번호 입력...."
-            @keyup.enter="confirm"></b-form-input>
+          <b-form-input
+            type="password"
+            id="userpwd"
+            v-model="user.userpwd"
+            required
+            placeholder="비밀번호 입력...."
+            @keyup.enter="confirm"
+          ></b-form-input>
         </b-form-group>
-        <p class="forgetpw"><a href="changepw.php">찾자. 비밀번호</a></p>
+        <!-- <p class="forgetpw"><a href="changepw.php">찾자. 비밀번호</a></p> -->
         <p>
           <!-- <input type="submit" value="Login" class="form_btn"> -->
-          <b-button class="form_btn" @click="confirm">Sign In</b-button>
+          <b-button class="form_btn" @click="confirm">로그인</b-button>
         </p>
       </b-form>
       <p class="regist_btn">
-        Not a member? &nbsp;<a href="/user/join">Sign Up</a></p>
+        회원이 아니신가요? &nbsp;<a href="/user/join">회원가입</a>
+      </p>
     </div>
   </div>
   <!-- <b-container class="bv-example-row mt-3">
@@ -109,7 +122,7 @@ export default {
   box-shadow: 2px 2px 2px 2px #999;
 }
 
-.wrap>div {
+.wrap > div {
   width: 100%;
   margin: 0 100px;
 }
@@ -118,7 +131,7 @@ h1 {
   margin-bottom: 20px;
 }
 
-.wrap .form input:not(input[type='submit'], input[type='checkbox']) {
+.wrap .form input:not(input[type="submit"], input[type="checkbox"]) {
   border: 1px solid #d9d9d9;
   width: 400px;
   height: 50px;

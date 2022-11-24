@@ -9,15 +9,28 @@
     </b-row>
     <b-row class="mb-1">
       <b-col class="text-right">
-        <b-button variant="outline-primary" @click="moveWrite()">글쓰기</b-button>
+        <b-button variant="outline-primary" @click="moveWrite()"
+          >글쓰기</b-button
+        >
       </b-col>
     </b-row>
     <b-row>
       <b-col>
-        <b-table hover :items="articles" :fields="fields" @row-clicked="viewArticle" :current-page="currentPage"
-          :per-page="perPage">
+        <b-table
+          hover
+          :items="articles"
+          :fields="fields"
+          @row-clicked="viewArticle"
+          :current-page="currentPage"
+          :per-page="perPage"
+        >
           <template #cell(subject)="data">
-            <router-link :to="{ name: 'boardview', params: { articleno: data.item.articleno } }">
+            <router-link
+              :to="{
+                name: 'boardview',
+                params: { articleno: data.item.articleno },
+              }"
+            >
               {{ data.item.subject }}
             </router-link>
           </template>
@@ -25,8 +38,11 @@
       </b-col>
     </b-row>
 
-    <b-pagination v-model="currentPage" :total-rows="rows" :per-page="perPage"></b-pagination>
-
+    <b-pagination
+      v-model="currentPage"
+      :total-rows="rows"
+      :per-page="perPage"
+    ></b-pagination>
   </b-container>
 </template>
 
@@ -52,7 +68,7 @@ export default {
   computed: {
     rows() {
       return this.articles.length;
-    }
+    },
   },
   created() {
     let param = {
@@ -99,5 +115,4 @@ export default {
 .pagination {
   display: inline-flex;
 }
-
 </style>

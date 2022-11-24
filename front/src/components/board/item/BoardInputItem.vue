@@ -2,18 +2,22 @@
   <b-row class="mb-1">
     <b-col style="text-align: left">
       <b-form @submit="onSubmit" @reset="onReset">
-        <b-form-group id="userid-group" label="작성자:" label-for="userid" description="작성자를 입력하세요.">
+        <b-form-group id="userid-group" label="작성자:" label-for="userid">
           <b-form-input
             id="userid"
             :disabled="isUserid"
-            v-model="article.userid"
             type="text"
-            required
-            placeholder="작성자 입력..."
+            :value="userInfo.username"
+            readonly
           ></b-form-input>
         </b-form-group>
 
-        <b-form-group id="subject-group" label="제목:" label-for="subject" description="제목을 입력하세요.">
+        <b-form-group
+          id="subject-group"
+          label="제목:"
+          label-for="subject"
+          description="제목을 입력하세요."
+        >
           <b-form-input
             id="subject"
             v-model="article.subject"
@@ -33,8 +37,16 @@
           ></b-form-textarea>
         </b-form-group>
 
-        <b-button type="submit" variant="primary" class="m-1" v-if="this.type === 'register'">글작성</b-button>
-        <b-button type="submit" variant="primary" class="m-1" v-else>글수정</b-button>
+        <b-button
+          type="submit"
+          variant="primary"
+          class="m-1"
+          v-if="this.type === 'register'"
+          >글작성</b-button
+        >
+        <b-button type="submit" variant="primary" class="m-1" v-else
+          >글수정</b-button
+        >
         <b-button type="reset" variant="danger" class="m-1">초기화</b-button>
       </b-form>
     </b-col>
@@ -43,7 +55,8 @@
 
 <script>
 import { writeArticle, modifyArticle, getArticle } from "@/api/board";
-
+import { mapState } from "vuex";
+const memberStore = "memberStore";
 export default {
   name: "BoardInputItem",
   data() {
@@ -79,18 +92,23 @@ export default {
       this.isUserid = true;
     }
   },
+  computed: {
+    ...mapState(memberStore, ["userInfo"]),
+  },
   methods: {
     onSubmit(event) {
       event.preventDefault();
 
       let err = true;
       let msg = "";
-      !this.article.userid && ((msg = "작성자 입력해주세요"), (err = false), this.$refs.userid.focus());
-      err && !this.article.subject && ((msg = "제목 입력해주세요"), (err = false), this.$refs.subject.focus());
-      err && !this.article.content && ((msg = "내용 입력해주세요"), (err = false), this.$refs.content.focus());
+      !this.article.subject && ((msg = "제목 입력해주세요"), (err = false));
+      err &&
+        !this.article.content &&
+        ((msg = "내용 입력해주세요"), (err = false));
 
       if (!err) alert(msg);
-      else this.type === "register" ? this.registArticle() : this.modifyArticle();
+      else
+        this.type === "register" ? this.registArticle() : this.modifyArticle();
     },
     onReset(event) {
       event.preventDefault();
@@ -101,7 +119,7 @@ export default {
     },
     registArticle() {
       let param = {
-        userid: this.article.userid,
+        userid: this.userInfo.userid,
         subject: this.article.subject,
         content: this.article.content,
       };

@@ -1,24 +1,27 @@
 <template>
   <b-container class="bv-example-row mt-3">
-    <b-row>
-      <b-col>
-        {{article.subject}}
-      </b-col>
-    </b-row>
     <b-row class="mb-1">
       <b-col class="text-left">
         <b-button variant="outline-primary" @click="moveList">목록</b-button>
       </b-col>
       <b-col class="text-right" v-if="userInfo.userid === article.userid">
-        <b-button variant="outline-info" size="sm" @click="moveModifyArticle" class="mr-2">글수정</b-button>
-        <b-button variant="outline-danger" size="sm" @click="deleteArticle">글삭제</b-button>
+        <b-button
+          variant="outline-info"
+          size="sm"
+          @click="moveModifyArticle"
+          class="mr-2"
+          >글수정</b-button
+        >
+        <b-button variant="outline-danger" size="sm" @click="deleteArticle"
+          >글삭제</b-button
+        >
       </b-col>
     </b-row>
     <b-row class="mb-1">
       <b-col>
         <b-card
-          :header-html="`<h3>${article.articleno}.
-          ${article.subject} [${article.hit}]</h3><div><h6>${article.userid}</div><div>${article.regtime}</h6></div>`"
+          :header-html="`<h3>
+          ${article.subject} </h3><div><h6>작성자 : ${article.userid}</div><div>작성시간 : ${article.regtime}</h6></div>`"
           class="mb-2"
           border-variant="dark"
           no-body
@@ -58,7 +61,8 @@ export default {
   computed: {
     ...mapState(memberStore, ["userInfo"]),
     message() {
-      if (this.article.content) return this.article.content.split("\n").join("<br>");
+      if (this.article.content)
+        return this.article.content.split("\n").join("<br>");
       return "";
     },
   },
@@ -75,17 +79,17 @@ export default {
     );
 
     let param2 = this.$route.params.articleno;
-        listComment(
-            param2,
-            ({ data }) => {
-                console.log("data>>",data);
-                this.comments = data;
-                console.log("test >> ", this.comments);
-            },
-            (error) => {
-                console.log(error);
-            }
-        );
+    listComment(
+      param2,
+      ({ data }) => {
+        console.log("data>>", data);
+        this.comments = data;
+        console.log("test >> ", this.comments);
+      },
+      (error) => {
+        console.log(error);
+      }
+    );
   },
   methods: {
     moveModifyArticle() {
@@ -93,7 +97,6 @@ export default {
         name: "boardmodify",
         params: { articleno: this.article.articleno },
       });
-        this.$router.push({ path: `/board/modify/${this.article.articleno}` });
     },
     deleteArticle() {
       if (confirm("정말로 삭제?")) {
