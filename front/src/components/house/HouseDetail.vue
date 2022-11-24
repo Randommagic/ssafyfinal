@@ -5,17 +5,30 @@
         <h3>{{ house.aptName }}</h3>
 
         <div v-if="this.userInfo">
-          <b-button v-if="!isBookmarked" pill variant="info" @click="bookmark(house.aptCode)">
-            북마크하기</b-button>
-          <b-button v-else pill variant="warning" @click="removeBookmark(house.aptCode)">
-            북마크 취소</b-button>
+          <b-button
+            v-if="!isBookmarked"
+            pill
+            variant="info"
+            @click="bookmark(house.aptCode)"
+          >
+            북마크하기</b-button
+          >
+          <b-button
+            v-else
+            pill
+            variant="warning"
+            @click="removeBookmark(house.aptCode)"
+          >
+            북마크 취소</b-button
+          >
         </div>
 
-
         <hr />
-        <b-alert show variant="primary">아파트 이름 : {{ house.aptName }}
+        <b-alert show variant="primary"
+          >아파트 이름 : {{ house.aptName }}
         </b-alert>
-        <b-alert show variant="info">건축년도 : {{ house.buildYear }} 년
+        <b-alert show variant="info"
+          >건축년도 : {{ house.buildYear }} 년
         </b-alert>
         <hr />
         <b-tabs id="houseinfo" pills size="sm">
@@ -26,7 +39,8 @@
             </div>
             <b-list-group id="houselist">
               <div v-for="(deal, index) in house.filteredDeals" :key="index">
-                <b-list-group-item class="mx-3">거래날짜 :{{ deal.dealYear }}년 {{ deal.dealMonth }}월
+                <b-list-group-item class="mx-3"
+                  >거래날짜 :{{ deal.dealYear }}년 {{ deal.dealMonth }}월
                   {{ deal.dealDay }}일
                   <br />
                   평수:{{ deal.area / 3.3058 }} 평
@@ -35,10 +49,10 @@
                   <hr />
                   거래가 :
                   {{
-    (parseInt(deal.dealAmount.replace(",", "")) * 10000)
-    | price
-                  }}원
-                </b-list-group-item><br />
+                    (parseInt(deal.dealAmount.replace(",", "")) * 10000)
+                      | price
+                  }}원 </b-list-group-item
+                ><br />
               </div>
             </b-list-group>
           </b-tab>
@@ -68,7 +82,7 @@ export default {
   data() {
     return {
       isBookmarked: false,
-    }
+    };
   },
   components: {},
   computed: {
@@ -93,6 +107,8 @@ export default {
     },
 
     removeBookmark(aptCode) {
+      var really = confirm("북마크를 취소하시겠습니까?");
+      if (!really) return;
       var param = {
         aptCode: aptCode,
         userId: this.userInfo.userid,
@@ -100,7 +116,6 @@ export default {
       this.isBookmarked = false;
       this.deleteBookmark(param);
     },
-
   },
 
   watch: {
@@ -108,7 +123,7 @@ export default {
       if (!val) return;
       for (var i = 0; i < this.userInfo.aptBookmark.length; i++) {
         if (this.house.aptCode === this.userInfo.aptBookmark[i].aptCode) {
-          console.log("발견")
+          console.log("발견");
           this.isBookmarked = true;
           return;
         }
@@ -123,7 +138,6 @@ export default {
       return value.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
     },
   },
-
 };
 </script>
 
