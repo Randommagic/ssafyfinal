@@ -3,9 +3,8 @@
     <div v-if="house" class="bv-example-row">
       <b-card>
         <b-row>
-          <b-col></b-col>
-          <b-col
-            ><h3>{{ house.aptName }}</h3></b-col
+          <b-col cols="8"
+            ><h4>{{ house.aptName }}</h4></b-col
           >
           <b-col>
             <div v-if="this.userInfo">
@@ -37,46 +36,46 @@
           >거래 평수 : {{ minarea | area }} 평 ~ {{ maxarea | area }} 평
         </b-alert>
         <hr />
-        <b-tabs id="houseinfo" pills size="sm">
-          <b-tab title="거래정보">
-            <div class="py-3">
-              총 {{ house.deals.length }} 개의 결과 중 필터링 된
-              {{ house.filteredDeals.length }} 개의 결과들입니다.
-            </div>
-            <b-list-group id="houselist">
-              <div v-for="(deal, index) in house.filteredDeals" :key="index">
-                <b-list-group-item class="mx-3">
-                  <h3>
-                    <b-badge variant="light"
-                      >거래가 :
-                      {{
-                        (parseInt(deal.dealAmount.replace(",", "")) * 10000)
-                          | price
-                      }}원</b-badge
-                    >
-                  </h3>
-                  <hr />
-                  <h4>
-                    <b-badge variant="info" pill size="lg">
-                      거래날짜 : {{ deal.dealYear }}년 {{ deal.dealMonth }}월
-                      {{ deal.dealDay }}일<br />
-                    </b-badge>
-                  </h4>
-                  <h5>
-                    <b-badge variant="primary" pill size="lg"
-                      >{{ deal.area | area }} 평</b-badge
-                    >
-                    &nbsp;
-                    <b-badge variant="success" pill
-                      >{{ deal.floor }} 층</b-badge
-                    >
-                  </h5> </b-list-group-item
-                ><br />
-              </div>
-            </b-list-group>
+        <!-- <b-tabs id="houseinfo" pills size="sm">
+          <b-tab title="거래정보"> -->
+        <div class="py-3">
+          총 {{ house.deals.length }} 개의 결과 중 필터링 된
+          {{ house.filteredDeals.length }} 개의 결과들입니다.
+        </div>
+        <b-list-group id="houselist">
+          <div v-for="(deal, index) in house.filteredDeals" :key="index">
+            <b-list-group-item class="mx-3">
+              <h3>
+                <b-badge variant="light"
+                  >거래가 :
+                  {{
+                    (parseInt(deal.dealAmount.replace(",", "")) * 10000)
+                      | price
+                  }}원</b-badge
+                >
+              </h3>
+              <hr />
+              <h4>
+                <b-badge variant="info" pill size="lg">
+                  거래날짜 : {{ deal.dealYear }}년 {{ deal.dealMonth }}월
+                  {{ deal.dealDay }}일<br />
+                </b-badge>
+              </h4>
+              <h5>
+                <b-badge variant="primary" pill size="lg"
+                  >{{ deal.area | area }} 평</b-badge
+                >
+                &nbsp;
+                <b-badge variant="success" pill>{{ deal.floor }} 층</b-badge>
+              </h5> </b-list-group-item
+            ><br />
+          </div>
+        </b-list-group>
+        <!-- </b-tab> -->
+        <!-- <b-tab title="거래정보그래프"> -->
+        <!-- <house-detail-chart></house-detail-chart>
           </b-tab>
-          <b-tab title="거래정보그래프"> </b-tab>
-        </b-tabs>
+        </b-tabs> -->
       </b-card>
     </div>
     <div v-else class="bv-example-row mt-3">
@@ -93,6 +92,7 @@
 
 <script>
 import { mapActions, mapState } from "vuex";
+// import HouseDetailChart from "@/components/house/HouseDetailChart.vue";
 
 const houseStore = "houseStore";
 const memberStore = "memberStore";
@@ -105,7 +105,7 @@ export default {
       maxarea: 0,
     };
   },
-  components: {},
+  // components: { HouseDetailChart },
   computed: {
     ...mapState(houseStore, ["house"]),
     ...mapState(memberStore, ["userInfo"]),
@@ -128,6 +128,8 @@ export default {
     },
 
     removeBookmark(aptCode) {
+      var really = confirm("북마크를 취소하시겠습니까?");
+      if (!really) return;
       var param = {
         aptCode: aptCode,
         userId: this.userInfo.userid,
@@ -147,6 +149,8 @@ export default {
       }
       console.log(this.minarea, this.maxarea);
 
+      this.isBookmarked = false;
+      if (!this.userInfo) return;
       for (var i = 0; i < this.userInfo.aptBookmark.length; i++) {
         if (this.house.aptCode === this.userInfo.aptBookmark[i].aptCode) {
           console.log("발견");
@@ -154,7 +158,6 @@ export default {
           return;
         }
       }
-      this.isBookmarked = false;
     },
   },
 
@@ -187,6 +190,6 @@ export default {
 
 #houselist {
   max-height: 300px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 </style>

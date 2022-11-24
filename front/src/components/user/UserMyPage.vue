@@ -1,17 +1,10 @@
 <template>
   <div id="container">
     <b-row>
-      <b-col>
-        <b-alert variant="secondary" show>
-          <h2>MY PAGE</h2>
-        </b-alert>
-      </b-col>
-    </b-row>
-    <b-row>
-      <b-col cols="6">
+      <b-col class="mypagecontainer" cols="6">
         <user-my-page-info></user-my-page-info>
       </b-col>
-      <b-col cols="6">
+      <b-col class="mypagecontainer" cols="6">
         <user-my-page-book-mark />
       </b-col>
     </b-row>
@@ -36,4 +29,8 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.mypagecontainer {
+  padding: 1px;
+}
+</style>
