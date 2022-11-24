@@ -53,7 +53,9 @@
         <b-navbar-nav class="ml-auto" v-else>
           <b-dropdown-item>
             <router-link :to="{ name: 'login' }" class="link"
-              >로그인</router-link
+              ><b-button class="custom" variant="outline-success"
+                >로그인</b-button
+              ></router-link
             >
           </b-dropdown-item>
         </b-navbar-nav>
@@ -91,11 +93,29 @@ export default {
 </script>
 
 <style scoped>
+.customBtn {
+  color: #d0fb7b !important;
+  /* text-shadow: -0.5px 0 black, 0 1px black, 1px 0 black, 0 -1px black; */
+  border: none;
+  background-color: transparent;
+  font-weight: bold;
+}
+
 #logo {
   width: 120px;
 }
 
+.custom:hover {
+  color: #28a745;
+  text-decoration: none;
+  background-color: transparent;
+}
+
 .link {
   text-decoration: none;
+}
+a {
+  color: #28a745 !important;
+  text-decoration: none !important;
 }
 </style>

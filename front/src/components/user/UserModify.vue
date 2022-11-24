@@ -52,12 +52,19 @@
         </b-form-group>
       </b-form>
     </div>
-    <div>
-      <b-button-group>
-        <b-button @click="updateCheck()">수정하기</b-button>
-        <b-button block @click="updateFormClose">닫기</b-button>
-      </b-button-group>
-    </div>
+
+    <b-row>
+      <b-col>
+        <b-button class="mx-2" variant="outline-success" @click="updateCheck()"
+          >수정</b-button
+        ><b-button
+          class="mx-2"
+          variant="outline-danger"
+          @click="updateFormClose"
+          >취소</b-button
+        ></b-col
+      >
+    </b-row>
   </b-modal>
 </template>
 
@@ -117,7 +124,7 @@ export default {
       this.changeUser.userid = this.userInfo.userid;
       this.changeUser.username = this.userInfo.username;
       this.changeUser.email = this.userInfo.email;
-      this.$refs['modify-form'].hide();
+      this.$refs["modify-form"].hide();
     },
   },
 };

@@ -11,7 +11,7 @@
         <b-form-input v-model="apt.aptName" readonly></b-form-input>
 
         <router-link :to="{ name: 'house', query: { aptCode: apt.aptCode } }">
-          <b-button class="mx-1" variant="outline-info">지도</b-button>
+          <b-button class="mx-1" variant="outline-success">지도</b-button>
         </router-link>
         <b-button
           class="mx-1"

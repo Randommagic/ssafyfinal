@@ -116,4 +116,8 @@ export default {
   height: 40vh;
   background-color: gray;
 }
+a {
+  color: #28a745 !important;
+  text-decoration: none !important;
+}
 </style>

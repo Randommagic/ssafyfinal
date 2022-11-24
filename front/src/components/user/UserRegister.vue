@@ -183,7 +183,7 @@ h1 {
   margin: 10px;
   border-radius: 5px;
   border: 0;
-  background: linear-gradient(to left, #f857a6, #ff5858);
+  background: linear-gradient(to left, #38d85d, #b6db6b);
   color: #fff;
   font-weight: bold;
   font-size: 18px;

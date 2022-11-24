@@ -20,7 +20,7 @@
           <b-col cols="4" align-self="start">{{ userInfo.userid }}</b-col>
           <b-col cols="2"></b-col> </b-row
       ></b-list-group-item>
-      <b-list-group-item variant="secondary" button>
+      <b-list-group-item button>
         <b-row>
           <b-col cols="2"></b-col>
           <b-col cols="2" align-self="end">이름</b-col>
@@ -34,7 +34,7 @@
           <b-col cols="4" align-self="start">{{ userInfo.email }}</b-col>
           <b-col cols="2"></b-col> </b-row
       ></b-list-group-item>
-      <b-list-group-item variant="secondary" button>
+      <b-list-group-item button>
         <b-row>
           <b-col cols="2"></b-col>
           <b-col cols="2" align-self="end">가입일</b-col>
@@ -45,14 +45,14 @@
 
     <div>
       <b-button
-        variant="primary"
+        variant="outline-success"
         id="show-btn"
         @click="$bvModal.show('modify-form')"
         class="mr-1"
         >정보수정
       </b-button>
       <user-modify />
-      <b-button variant="danger" @click="checkMsg()">회원탈퇴</b-button>
+      <b-button variant="outline-danger" @click="checkMsg()">회원탈퇴</b-button>
     </div>
   </b-jumbotron>
 </template>
