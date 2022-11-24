@@ -1,31 +1,24 @@
 <template>
-  <!-- <b-container class="bv-example-row">
-            <b-button-group fluid>
-            <b-col cols="9" class="bg-light p-2 pl-5 text-left">
-                <span :class="{ completed: apt.aptCOde }">{{ apt.aptCode }}</span>
-            </b-col>
-                <b-button variant="primary" @click="removeApt">지도</b-button>
-                <b-button variant="danger" @click="removeApt">삭제</b-button>
-            </b-button-group>
-    </b-container> -->
-  <div>
-    <h3>북마크 리스트</h3>
-    <b-input-group
-      v-for="(apt, index) in userInfo.aptBookmark"
-      :key="index"
-      class="mt-3"
-    >
-      <b-form-input v-model="apt.aptName" readonly></b-form-input>
-      <b-input-group-append>
-        <router-link :to="{ name: 'house', query: { aptCode: apt.aptCode } }">
-          <b-button variant="primary">지도</b-button>
-        </router-link>
-        <b-button variant="danger" @click="removeBookmark(apt.aptCode)"
-          >삭제</b-button
-        >
-      </b-input-group-append>
-    </b-input-group>
-  </div>
+  <b-jumbotron>
+    <h1>북마크 리스트</h1>
+    <div id="bookmarks">
+      <b-input-group
+        v-for="(apt, index) in userInfo.aptBookmark"
+        :key="index"
+        class="mt-3"
+      >
+        <b-form-input v-model="apt.aptName" readonly></b-form-input>
+        <b-input-group-append>
+          <router-link :to="{ name: 'house', query: { aptCode: apt.aptCode } }">
+            <b-button variant="primary">지도</b-button>
+          </router-link>
+          <b-button variant="danger" @click="removeBookmark(apt.aptCode)"
+            >삭제</b-button
+          >
+        </b-input-group-append>
+      </b-input-group>
+    </div>
+  </b-jumbotron>
 </template>
 
 <script>
@@ -64,12 +57,15 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .bookmark {
   display: contents;
   margin: 10px;
 }
 
+#bookmarks {
+  max-height: 10%;
+}
 /* 
 .bookmark>button {
     width: 100px;

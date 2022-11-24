@@ -3,7 +3,7 @@
     <b-row>
       <b-col>
         <b-alert variant="secondary" show>
-          <h3>내정보</h3>
+          <h2>MY PAGE</h2>
         </b-alert>
       </b-col>
     </b-row>
@@ -24,7 +24,6 @@ const memberStore = "memberStore";
 import UserMyPageInfo from "@/components/user/UserMyPageInfo";
 import UserMyPageBookMark from "@/components/user/UserMyPageBookmark";
 
-
 export default {
   name: "UserMyPage",
   computed: {
@@ -37,6 +36,4 @@ export default {
 };
 </script>
 
-<style>
-
-</style>
+<style></style>
