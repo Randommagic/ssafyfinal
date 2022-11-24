@@ -46,23 +46,31 @@
             <b-list-group id="houselist">
               <div v-for="(deal, index) in house.filteredDeals" :key="index">
                 <b-list-group-item class="mx-3">
-                  <div>
-                    거래가 :
-                    {{
-                      (parseInt(deal.dealAmount.replace(",", "")) * 10000)
-                        | price
-                    }}원
-                  </div>
-
+                  <h3>
+                    <b-badge variant="light"
+                      >거래가 :
+                      {{
+                        (parseInt(deal.dealAmount.replace(",", "")) * 10000)
+                          | price
+                      }}원</b-badge
+                    >
+                  </h3>
                   <hr />
-                  거래날짜 : {{ deal.dealYear }}년 {{ deal.dealMonth }}월
-                  {{ deal.dealDay }}일<br />
-                  <b-badge variant="primary" pill
-                    >{{ deal.area | area }} 평</b-badge
-                  >
-                  <b-badge variant="secondary" pill
-                    >{{ deal.floor }} 층</b-badge
-                  > </b-list-group-item
+                  <h4>
+                    <b-badge variant="info" pill size="lg">
+                      거래날짜 : {{ deal.dealYear }}년 {{ deal.dealMonth }}월
+                      {{ deal.dealDay }}일<br />
+                    </b-badge>
+                  </h4>
+                  <h5>
+                    <b-badge variant="primary" pill size="lg"
+                      >{{ deal.area | area }} 평</b-badge
+                    >
+                    &nbsp;
+                    <b-badge variant="success" pill
+                      >{{ deal.floor }} 층</b-badge
+                    >
+                  </h5> </b-list-group-item
                 ><br />
               </div>
             </b-list-group>
