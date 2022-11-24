@@ -30,13 +30,13 @@
             right
           >
             <template #button-content>{{ userInfo.username }} 님</template>
-            <b-dropdown-item v-if="userInfo.category == 1">
+            <!-- <b-dropdown-item v-if="userInfo.category == 1">
               <router-link
                 :to="{ name: 'mypage' }"
                 class="link align-self-center"
                 >회원 목록</router-link
               >
-            </b-dropdown-item>
+            </b-dropdown-item> -->
             <b-dropdown-item>
               <router-link
                 :to="{ name: 'mypage' }"
