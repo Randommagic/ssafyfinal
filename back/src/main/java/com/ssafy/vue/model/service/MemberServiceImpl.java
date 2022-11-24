@@ -1,16 +1,15 @@
 package com.ssafy.vue.model.service;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
+import com.ssafy.vue.model.BookmarkDto;
+import com.ssafy.vue.model.MemberDto;
+import com.ssafy.vue.model.mapper.MemberMapper;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.ssafy.vue.model.BookmarkDto;
-import com.ssafy.vue.model.MemberDto;
-import com.ssafy.vue.model.mapper.MemberMapper;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -62,6 +61,14 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public boolean modifyUser(MemberDto memberDto) throws Exception {
+		if(memberDto.getUserid() == null) {
+			throw new Exception();
+		}
+		return sqlSession.getMapper(MemberMapper.class).updateUser(memberDto) == 1;
+	}
+
+	@Override
 	public boolean deleteUser(String userid) throws Exception {
 		if(userid == "" || userid == null) {
 			throw new Exception();
@@ -69,12 +76,12 @@ public class MemberServiceImpl implements MemberService {
 		return sqlSession.getMapper(MemberMapper.class).removeUser(userid) == 1;
 	}
 
-	
+
 	@Override
 	public List<BookmarkDto> getBookmarks(String userId) throws Exception {
 		return sqlSession.getMapper(MemberMapper.class).getBookmarkApt(userId);
 	}
-	
+
 	@Override
 	public List<BookmarkDto> newBookmark(String userId, String aptCode) throws Exception {
 		sqlSession.getMapper(MemberMapper.class).newBookmark(userId, aptCode);

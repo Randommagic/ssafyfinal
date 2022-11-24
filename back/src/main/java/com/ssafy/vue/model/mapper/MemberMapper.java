@@ -1,13 +1,12 @@
 package com.ssafy.vue.model.mapper;
 
+import com.ssafy.vue.model.BookmarkDto;
+import com.ssafy.vue.model.MemberDto;
+import org.apache.ibatis.annotations.Mapper;
+
 import java.sql.SQLException;
 import java.util.List;
 import java.util.Map;
-
-import org.apache.ibatis.annotations.Mapper;
-
-import com.ssafy.vue.model.BookmarkDto;
-import com.ssafy.vue.model.MemberDto;
 
 @Mapper
 public interface MemberMapper {
@@ -29,7 +28,8 @@ public interface MemberMapper {
 	public List<BookmarkDto> getBookmarkApt(String userid) throws SQLException;
 
 	public int newBookmark(String userId, String aptCode) throws SQLException;
-	
+
 	public int deleteBookmark(String userId, String aptCode) throws SQLException;
-	
+
+	public int updateUser(MemberDto memberDto) throws SQLException;
 }

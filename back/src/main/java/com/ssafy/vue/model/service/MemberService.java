@@ -1,9 +1,9 @@
 package com.ssafy.vue.model.service;
 
-import java.util.List;
-
 import com.ssafy.vue.model.BookmarkDto;
 import com.ssafy.vue.model.MemberDto;
+
+import java.util.List;
 
 public interface MemberService {
 
@@ -26,4 +26,6 @@ public interface MemberService {
 	public List<BookmarkDto> newBookmark(String userId, String aptCode) throws Exception;
 
 	public List<BookmarkDto> deleteBookmark(String userId, String aptCode) throws Exception;
+
+	public boolean modifyUser(MemberDto memberDto) throws Exception;
 }
