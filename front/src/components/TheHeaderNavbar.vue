@@ -12,24 +12,15 @@
           </b-img>
         </router-link>
       </b-navbar-brand>
+
       <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
       <b-collapse id="nav-collapse" is-nav>
         <b-navbar-nav>
-          <b-nav-item href="#" variant="">
-            <router-link :to="{ name: 'main' }" class="link"> 홈 </router-link>
-            <router-link :to="{ name: 'notice' }" class="m-2 link">
-              공지사항
-            </router-link>
-            <router-link :to="{ name: 'house' }" class="m-2 link">
-              지도
-            </router-link>
-            <router-link :to="{ name: 'board' }" class="m-2 link">
-              자유게시판
-            </router-link>
-            <router-link :to="{ name: 'news' }" class="m-2 link">
-              뉴스
-            </router-link>
-          </b-nav-item>
+          <b-nav-item class="px-2" :to="'/'"> 홈</b-nav-item>
+          <b-nav-item class="px-2" :to="'/notice'"> 공지사항</b-nav-item>
+          <b-nav-item class="px-2" :to="'/house'"> 지도</b-nav-item>
+          <b-nav-item class="px-2" :to="'/board'"> 자유게시판</b-nav-item>
+          <b-nav-item class="px-2" :to="'/news'"> 뉴스</b-nav-item>
         </b-navbar-nav>
 
         <b-navbar-nav class="ml-auto" v-if="userInfo">
