@@ -15,12 +15,7 @@
     </div>
     <div class="card-body">
       <b-form-group>
-        <b-form-textarea
-          id="textarea-auto-height"
-          rows="3"
-          max-rows="8"
-          v-model="comment.content"
-        >
+        <b-form-textarea id="textarea-auto-height" rows="3" max-rows="8" v-model="comment.content">
         </b-form-textarea>
       </b-form-group>
       <b-form-group class="wrapper_btn" style="text-align: right">
@@ -91,7 +86,7 @@ export default {
   height: 30px;
   border-radius: 5px;
   border: 0;
-  background: linear-gradient(to left, #f857a6, #ff5858);
+  background: linear-gradient(to left, #38d85d, #b6db6b);
   color: #fff;
   font-weight: bold;
   font-size: 12px;
