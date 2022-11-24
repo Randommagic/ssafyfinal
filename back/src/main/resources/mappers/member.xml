@@ -48,7 +48,7 @@
 	
 	
 	<select id="getBookmarkApt" parameterType="string" resultType="BookmarkDto">
-		select id,aptCode,bookmarkedTime
+		select id,aptCode, (select aptName from houseinfo where houseinfo.aptCode = bookmark.aptCode) aptName, bookmarkedTime
 		from bookmark
 		where userid = #{userid}
 	</select>
